@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/cat1"
+        android:title="Bulut"/>
+    <item android:id="@+id/cat2"
+        android:title="DevOps"/>
+    <item android:id="@+id/cat3"
+        android:title="ERP"/>
+    <item android:id="@+id/cat4"
+        android:title="Oyun Tasarimi Gelistirme"/>
+    <item android:id="@+id/cat5"
+        android:title="Ag Teknolojileri"/>
+    <item android:id="@+id/cat6"
+        android:title="Siber Guvenlik"/>
+    <item android:id="@+id/cat7"
+        android:title="UI/UX Tasarimi"/>
+    <item android:id="@+id/cat8"
+        android:title="Veri Bilimi"/>
+    <item android:id="@+id/cat9"
+        android:title="Backend Developer"/>
+    <item android:id="@+id/cat10"
+        android:title="Frontend Developer"/>
+    <item android:id="@+id/cat12"
+        android:title="Fullstack Developer"/>
+    <item android:id="@+id/cat11"
+        android:title="Game Developer"/>
+    <item android:id="@+id/cat13"
+        android:title="Mobile Developer"/>
+
+
+</menu>
