@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,7 +23,7 @@ public class homepageActivity extends AppCompatActivity {
     couponsFragment couponsFragment = new couponsFragment();
     favoritesFragment favoritesFragment = new favoritesFragment();
 
-    NavigationView navigationView;
+
     DrawerLayout drawerLayout;
 
     @Override
@@ -30,7 +31,10 @@ public class homepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        NavigationView navigationView = findViewById(R.id.navmenu);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
 
