@@ -24,8 +24,6 @@ public class homepageActivity extends AppCompatActivity {
     favoritesFragment favoritesFragment = new favoritesFragment();
 
 
-    DrawerLayout drawerLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +32,6 @@ public class homepageActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navmenu);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
 
@@ -61,7 +58,7 @@ public class homepageActivity extends AppCompatActivity {
 
         Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -74,8 +71,6 @@ public class homepageActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
 
     }
 }
