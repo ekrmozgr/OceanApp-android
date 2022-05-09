@@ -11,23 +11,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONObject;
 
 
 public class loginFragment extends Fragment {
 
     MainActivity mainActivity;
+    EditText etemail, etpassword;
+    String email, password;
+    String url= "https://localhost:7157/api/login";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        etemail=view.findViewById(R.id.emails);
+        etpassword=view.findViewById(R.id.password);
+
+
         View goRegister = view.findViewById(R.id.backMain);
         goRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                email=etemail.getText().toString().trim();
+                password=etpassword.getText().toString().trim();
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.container, new registerFragment());
                 fr.commit();
+
             }
         });
 
@@ -42,6 +60,16 @@ public class loginFragment extends Fragment {
             }
         });
 
+
    return view;
     }
+
+    public void login(View view){
+
+
+
+
+    }
+
+
 }
