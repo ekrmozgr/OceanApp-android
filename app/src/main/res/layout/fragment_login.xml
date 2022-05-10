@@ -85,6 +85,7 @@
             android:text="Hesabınız yok mu?Kaydol"
             android:textColor="@color/white"/>
 
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

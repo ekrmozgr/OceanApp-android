@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -22,6 +23,8 @@ public class loginFragment extends Fragment {
     EditText etemail, etpassword;
     String email, password;
     Context ctx;
+    sharedPrefence sharedPrefence;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class loginFragment extends Fragment {
 
         etemail=view.findViewById(R.id.emails);
         etpassword=view.findViewById(R.id.password);
+        sharedPrefence=new sharedPrefence();
 
         View goRegister = view.findViewById(R.id.backMain);
         goRegister.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +44,6 @@ public class loginFragment extends Fragment {
 
             }
         });
-
 
         Button signin =view.findViewById(R.id.signin);
         mainActivity=(MainActivity)getActivity();
@@ -55,8 +58,7 @@ public class loginFragment extends Fragment {
                     user.initializeUser(email,password,ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
-                            Intent i=new Intent(getActivity(),homepageActivity.class);
-                            startActivity(i);
+                            sharedPrefence.save(ctx,email);
                         }
                     });
                 } catch (JSONException e) {
