@@ -1,5 +1,6 @@
 package com.example.ocean1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,13 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONObject;
+import org.json.JSONException;
 
 
 public class loginFragment extends Fragment {
@@ -25,7 +21,7 @@ public class loginFragment extends Fragment {
     MainActivity mainActivity;
     EditText etemail, etpassword;
     String email, password;
-    String url= "https://localhost:7157/api/login";
+    Context ctx;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,14 +30,10 @@ public class loginFragment extends Fragment {
         etemail=view.findViewById(R.id.emails);
         etpassword=view.findViewById(R.id.password);
 
-
         View goRegister = view.findViewById(R.id.backMain);
         goRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                email=etemail.getText().toString().trim();
-                password=etpassword.getText().toString().trim();
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.container, new registerFragment());
                 fr.commit();
@@ -52,24 +44,28 @@ public class loginFragment extends Fragment {
 
         Button signin =view.findViewById(R.id.signin);
         mainActivity=(MainActivity)getActivity();
+        ctx = mainActivity.getApplicationContext();
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getActivity(),homepageActivity.class);
-                startActivity(i);
+                email = etemail.getText().toString();
+                password = etpassword.getText().toString();
+                User user = new User();
+                try {
+                    user.initializeUser(email,password,ctx,new VolleyCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            Intent i=new Intent(getActivity(),homepageActivity.class);
+                            startActivity(i);
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
 
    return view;
     }
-
-    public void login(View view){
-
-
-
-
-    }
-
-
 }
