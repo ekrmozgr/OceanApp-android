@@ -48,12 +48,10 @@ public class User {
                     JSONObject jsonObject = new JSONObject(body);
                     id = Integer.parseInt(jsonObject.getString("id"));
                     role = jsonObject.getString(("role"));
-                    System.out.println("ID ======= " + id);
-                    System.out.println("ROLE ====== " + role);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                System.out.println("TOKEN ====== " + token);
+                callBack.onSuccess();
             }
         }, new Response.ErrorListener() {
             @Override
