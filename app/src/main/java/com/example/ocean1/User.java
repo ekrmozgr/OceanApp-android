@@ -25,9 +25,7 @@ public class User {
     String role;
 
     void initializeUser(String email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
-        String url = Api.url + "/api/login";
-
-
+        String url = Api.login;
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
         jsonBody.put("password", password);
@@ -43,15 +41,15 @@ public class User {
 
                 Base64.Decoder decoder = Base64.getUrlDecoder();
                 String body = new String(decoder.decode(base64EncodedBody));
-
                 try {
                     JSONObject jsonObject = new JSONObject(body);
-                    id = Integer.parseInt(jsonObject.getString("id"));
-                    role = jsonObject.getString(("role"));
+                    id = Integer.parseInt(jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"));
+                    role = jsonObject.getString(("http://schemas.microsoft.com/ws/2008/06/identity/claims/role"));
+                    callBack.onSuccess();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                callBack.onSuccess();
             }
         }, new Response.ErrorListener() {
             @Override
