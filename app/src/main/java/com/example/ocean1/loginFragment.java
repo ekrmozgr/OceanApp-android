@@ -23,7 +23,6 @@ public class loginFragment extends Fragment {
     EditText etemail, etpassword;
     String email, password;
     Context ctx;
-    sharedPrefence sharedPrefence;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +31,6 @@ public class loginFragment extends Fragment {
 
         etemail=view.findViewById(R.id.emails);
         etpassword=view.findViewById(R.id.password);
-        sharedPrefence=new sharedPrefence();
 
         View goRegister = view.findViewById(R.id.backMain);
         goRegister.setOnClickListener(new View.OnClickListener() {
