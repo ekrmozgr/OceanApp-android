@@ -55,10 +55,14 @@ public class loginFragment extends Fragment {
                 password = etpassword.getText().toString();
                 User user = new User();
                 try {
-                    user.initializeUser(email,password,ctx,new VolleyCallBack() {
+                    user.login(email,password,ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
-                            sharedPrefence.save(ctx,email);
+                            TinyDB tinyDb = new TinyDB(ctx);
+                            tinyDb.putObject("user",user);
+                            Intent i=new Intent(getActivity(),homepageActivity.class);
+                            startActivity(i);
+                            mainActivity.finish();
                         }
                     });
                 } catch (JSONException e) {

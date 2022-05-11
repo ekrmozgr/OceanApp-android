@@ -8,6 +8,7 @@ import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -29,13 +30,22 @@ public class homepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        TinyDB tinyDb = new TinyDB(this);
+        User user = tinyDb.getObject("user",User.class);
+        if(user == null)
+        {
+            Intent i=new Intent(this,MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         NavigationView navigationView = findViewById(R.id.navmenu);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
 
-       bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch(item.getItemId()){

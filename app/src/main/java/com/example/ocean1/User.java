@@ -24,7 +24,7 @@ public class User {
     int id;
     String role;
 
-    void initializeUser(String email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
+    void login(String email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
         String url = Api.login;
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("email", email);
@@ -61,6 +61,43 @@ public class User {
             public byte[] getBody() {
                 return jsonBody.toString().getBytes();
             }
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    void register(String name, String surname, String email, String phone, String password, Context context,final VolleyCallBack callBack) throws JSONException {
+        String url = Api.users;
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("name",name);
+        jsonBody.put("surname",surname);
+        jsonBody.put("mobilePhone",phone);
+        jsonBody.put("email",email);
+        jsonBody.put("password",password);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    login(email,password,context,callBack);
+                } catch (JSONException e) {
+                    Toast.makeText(context, "Reading Data Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
