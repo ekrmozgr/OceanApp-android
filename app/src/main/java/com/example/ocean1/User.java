@@ -23,11 +23,13 @@ public class User {
     String token;
     int id;
     String role;
+    String email;
+    String name;
 
-    void login(String email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
+    void login(String _email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
         String url = Api.login;
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("email", email);
+        jsonBody.put("email", _email);
         jsonBody.put("password", password);
 
         StringRequest request = new StringRequest(Request.Method.POST,
@@ -44,7 +46,9 @@ public class User {
                 try {
                     JSONObject jsonObject = new JSONObject(body);
                     id = Integer.parseInt(jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"));
-                    role = jsonObject.getString(("http://schemas.microsoft.com/ws/2008/06/identity/claims/role"));
+                    role = jsonObject.getString("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
+                    email = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
+                    name = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
                     callBack.onSuccess();
 
                 } catch (JSONException e) {

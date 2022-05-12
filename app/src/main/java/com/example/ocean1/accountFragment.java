@@ -21,8 +21,9 @@ public class accountFragment extends Fragment {
     myProfileFragment myProfileFragment=new myProfileFragment();
     Context ctx;
     TextView _myProfile;
-
-
+    TextView tvemail;
+    TextView tvname;
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,11 +32,16 @@ public class accountFragment extends Fragment {
 
         homepageActivity=(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
+        TinyDB tinyDB=new TinyDB(ctx);
+        user = tinyDB.getObject("user",User.class);
+        tvname = view.findViewById(R.id.name);
+        tvemail = view.findViewById(R.id.email);
+        tvname.setText(user.name);
+        tvemail.setText(user.email);
         Button logout=view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TinyDB tinyDB=new TinyDB(ctx);
                 tinyDB.clear();
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);

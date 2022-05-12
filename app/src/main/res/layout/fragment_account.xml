@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Hacer Durak"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -29,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="hacerduraak@gmail.com"
         android:textSize="18sp"
         android:layout_below="@+id/name"
         android:layout_centerHorizontal="true" />

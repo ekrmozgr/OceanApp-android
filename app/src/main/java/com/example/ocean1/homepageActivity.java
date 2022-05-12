@@ -16,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.HashMap;
+
 public class homepageActivity extends AppCompatActivity {
 
 
@@ -23,7 +25,7 @@ public class homepageActivity extends AppCompatActivity {
     accountFragment accountFragment = new accountFragment();
     couponsFragment couponsFragment = new couponsFragment();
     favoritesFragment favoritesFragment = new favoritesFragment();
-
+    HashMap<String,Integer> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,12 @@ public class homepageActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
+
+        categories = new HashMap<String,Integer>();
+        Api.getCategories(categories,this, new VolleyCallBack() {
+            @Override
+            public void onSuccess() { }
+        });
 
         NavigationView navigationView = findViewById(R.id.navmenu);
 
@@ -77,8 +85,15 @@ public class homepageActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                String key = item.getTitle().toString().trim().toLowerCase();
+                int id;
+                try {
+                    id = categories.get(key);
+                } catch (Exception e)
+                {
 
-                return false;
+                }
+                return true;
             }
         });
 
