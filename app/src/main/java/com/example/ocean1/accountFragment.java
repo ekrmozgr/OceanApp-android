@@ -53,7 +53,7 @@ public class accountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.container,myProfileFragment).commit();
+                fm.replace(R.id.container,myProfileFragment).addToBackStack(null).commit();
             }
         });
         return view;

@@ -58,13 +58,13 @@ public class homepageActivity extends AppCompatActivity {
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch(item.getItemId()){
                    case R.id.account:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).addToBackStack("homepageActivity").commit();
                        return true;
                    case R.id.favorites:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,favoritesFragment).commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,favoritesFragment).addToBackStack(null).commit();
                        return true;
                    case R.id.coupon:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,couponsFragment).commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,couponsFragment).addToBackStack(null).commit();
                        return true;
                    case R.id.home:
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
