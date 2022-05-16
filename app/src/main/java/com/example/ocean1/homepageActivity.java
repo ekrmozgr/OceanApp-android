@@ -25,7 +25,7 @@ public class homepageActivity extends AppCompatActivity {
     accountFragment accountFragment = new accountFragment();
     couponsFragment couponsFragment = new couponsFragment();
     favoritesFragment favoritesFragment = new favoritesFragment();
-    HashMap<String,Integer> categories;
+    public static HashMap<String,Integer> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,28 +74,6 @@ public class homepageActivity extends AppCompatActivity {
            }
        });
 
-        Toolbar toolbar =findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawerLayout = findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                String key = item.getTitle().toString().trim().toLowerCase();
-                int id;
-                try {
-                    id = categories.get(key);
-                } catch (Exception e)
-                {
-
-                }
-                return true;
-            }
-        });
 
     }
 }

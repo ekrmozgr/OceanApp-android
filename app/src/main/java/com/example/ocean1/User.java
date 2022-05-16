@@ -1,10 +1,7 @@
 package com.example.ocean1;
 
 import android.content.Context;
-import android.os.Build;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -15,9 +12,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 public class User {
     String token;
@@ -34,15 +28,13 @@ public class User {
 
         StringRequest request = new StringRequest(Request.Method.POST,
                 url, new Response.Listener<String>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(String response) {
                 token = response;
                 String[] split_string = response.split("\\.");
                 String base64EncodedBody = split_string[1];
 
-                Base64.Decoder decoder = Base64.getUrlDecoder();
-                String body = new String(decoder.decode(base64EncodedBody));
+                String body = new String(android.util.Base64.decode(base64EncodedBody,android.util.Base64.DEFAULT));
                 try {
                     JSONObject jsonObject = new JSONObject(body);
                     id = Integer.parseInt(jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"));
