@@ -3,14 +3,20 @@ package com.example.ocean1;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class User {
@@ -19,6 +25,8 @@ public class User {
     String role;
     String email;
     String name;
+    ArrayList<Integer> whishlistProducts;
+    ArrayList<Integer> basketProducts;
 
     void login(String _email, String password,Context context,final VolleyCallBack callBack) throws JSONException {
         String url = Api.login;
@@ -41,7 +49,9 @@ public class User {
                     role = jsonObject.getString("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
                     email = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
                     name = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
-                    callBack.onSuccess();
+                    whishlistProducts = new ArrayList<Integer>();
+                    basketProducts = new ArrayList<Integer>();
+                    getWhishlist(context,callBack);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -101,4 +111,93 @@ public class User {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    void getWhishlist(Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.favourites + "/" + id;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, _url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray productobjarr = response.getJSONArray("favouritesProducts");
+                            for(int i = 0; i < productobjarr.length(); i++)
+                            {
+                                JSONObject productobj = productobjarr.getJSONObject(i);
+
+                                whishlistProducts.add(productobj.getInt("productId"));
+                            }
+                            getBasket(context,callBack);
+                        } catch (JSONException e) {
+                            Toast.makeText(context, "Reading Data Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    void getBasket(Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.baskets + "/" + id;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, _url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray productobjarr = response.getJSONArray("basketProducts");
+                            for(int i = 0; i < productobjarr.length(); i++)
+                            {
+                                JSONObject productobj = productobjarr.getJSONObject(i);
+
+                                basketProducts.add(productobj.getInt("productId"));
+                            }
+                            callBack.onSuccess();
+                        } catch (JSONException e) {
+                            Toast.makeText(context, "Reading Data Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
 }

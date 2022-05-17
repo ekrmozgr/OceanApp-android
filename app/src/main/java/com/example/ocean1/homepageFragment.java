@@ -9,6 +9,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,6 +27,8 @@ public class homepageFragment extends Fragment {
 
     homepageActivity homepageActivity;
     Context ctx;
+    RecyclerView recyclerView;
+    ProductAdapter productAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +56,16 @@ public class homepageFragment extends Fragment {
                 int id;
                 try {
                     id = homepageActivity.categories.get(key);
-                    List<Product> products = new ArrayList<Product>();
+                    ArrayList<Product> products = new ArrayList<Product>();
                     Product.getCategoryProducts(id, products, ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
+                            recyclerView = view.findViewById(R.id.recycler_view);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
 
+                            productAdapter = new ProductAdapter(ctx, products);
+                            recyclerView.setAdapter(productAdapter);
                         }
                     });
                 } catch (Exception e)

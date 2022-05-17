@@ -3,11 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_add_shopping_cart_24.xml" value="0.249" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.241" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.241" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_local_grocery_store_24.xml" value="0.241" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_remove_shopping_cart_24.xml" value="0.158" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.1" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_account.xml" value="0.17831813576494426" />
-        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_homepage.xml" value="0.13179347826086957" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_category_items.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_coupons.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_favorites.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_homepage.xml" value="0.25" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_login.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_my_profile.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_register.xml" value="0.18795289855072464" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/product_item.xml" value="0.33" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/gradient_button.xml" value="0.207" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.219" />
@@ -41,5 +54,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.67" />
+      </ProjectState>
+    </option>
   </component>
 </project>

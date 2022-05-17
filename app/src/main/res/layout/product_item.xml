@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="0"
+    android:paddingStart="0"
+    android:paddingLeft="0"
+    android:paddingTop="0"
+    android:paddingEnd="0"
+    android:paddingRight="0"
+    android:paddingBottom="0"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitStart"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/productImage"
+            android:text="Product Name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/productExplanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productName"
+            android:layout_toRightOf="@id/productImage"
+            android:text="ExplanationExplanationExplanationExplanationExplanationExplanationExplanationExplanationExpffflan..."
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/basketButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/productImage"
+            android:layout_alignParentEnd="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24" />
+
+        <ImageButton
+            android:id="@+id/whishlistButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/productImage"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/basketButton"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_favorite_border_24" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

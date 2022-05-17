@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         TinyDB tinyDb = new TinyDB(this);
         User user = tinyDb.getObject("user",User.class);
         if(user != null)

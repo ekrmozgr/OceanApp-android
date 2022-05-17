@@ -58,7 +58,7 @@ public class homepageActivity extends AppCompatActivity {
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch(item.getItemId()){
                    case R.id.account:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).addToBackStack("homepageActivity").commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).addToBackStack("homepageFragment").commit();
                        return true;
                    case R.id.favorites:
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,favoritesFragment).addToBackStack(null).commit();
