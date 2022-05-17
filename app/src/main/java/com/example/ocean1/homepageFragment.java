@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class homepageFragment extends Fragment {
+public class homepageFragment extends Fragment{
 
     homepageActivity homepageActivity;
     Context ctx;
@@ -64,7 +64,15 @@ public class homepageFragment extends Fragment {
                             recyclerView.setHasFixedSize(true);
                             recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
 
+                            ProductAdapter.OnItemClickListener clickListener = new ProductAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(int position) {
+                                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
+                                }
+                            };
+
                             productAdapter = new ProductAdapter(ctx, products);
+                            productAdapter.setOnItemClickListener(clickListener);
                             recyclerView.setAdapter(productAdapter);
                         }
                     });
@@ -77,5 +85,4 @@ public class homepageFragment extends Fragment {
         });
         return view;
     }
-
 }

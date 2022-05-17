@@ -20,6 +20,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
 
     private Context ctx;
     private ArrayList<Product> products;
+    OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
+        this.listener = listener;
+    }
 
     public ProductAdapter(Context ctx, ArrayList<Product> products)
     {
@@ -100,6 +110,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
             productExplanation = itemView.findViewById(R.id.productExplanation);
             basketButton = itemView.findViewById(R.id.basketButton);
             whishlistButton = itemView.findViewById(R.id.whishlistButton);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null)
+                    {
+                        int position = getBindingAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION)
+                            listener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:padding="0"
-    android:paddingStart="0"
-    android:paddingLeft="0"
-    android:paddingTop="0"
-    android:paddingEnd="0"
-    android:paddingRight="0"
-    android:paddingBottom="0"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
@@ -54,6 +47,7 @@
             android:layout_alignBottom="@id/productImage"
             android:layout_alignParentEnd="true"
             android:scaleType="fitXY"
+            android:minHeight="48dp"
             android:src="@drawable/ic_baseline_add_shopping_cart_24" />
 
         <ImageButton
@@ -63,6 +57,7 @@
             android:layout_alignBottom="@id/productImage"
             android:layout_marginEnd="10dp"
             android:layout_toStartOf="@id/basketButton"
+            android:minHeight="48dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_favorite_border_24" />
 
