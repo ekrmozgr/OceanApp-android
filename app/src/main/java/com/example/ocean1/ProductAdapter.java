@@ -111,6 +111,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         public ImageButton basketButton;
         public ImageButton whishlistButton;
 
+
         public ProductItemHolder(@NonNull View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.productImage);
