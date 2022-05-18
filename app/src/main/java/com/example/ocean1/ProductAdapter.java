@@ -2,6 +2,7 @@ package com.example.ocean1;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductItemHolder> {
@@ -21,6 +24,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
     private Context ctx;
     private ArrayList<Product> products;
     OnItemClickListener listener;
+    User user;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -67,7 +71,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         boolean isInWhislist = false;
 
         TinyDB tinyDb = new TinyDB(ctx);
-        User user = tinyDb.getObject("user",User.class);
+        user = tinyDb.getObject("user",User.class);
 
         for (int productId: user.basketProducts) {
             if(productId == currentProduct.productId)
@@ -85,8 +89,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         }
         if(isInWhislist)
             holder.whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_24);
+        else
+            holder.whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
         if(isInBasket)
             holder.basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);
+        else
+            holder.basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
     }
 
     @Override
@@ -110,6 +118,72 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
             productExplanation = itemView.findViewById(R.id.productExplanation);
             basketButton = itemView.findViewById(R.id.basketButton);
             whishlistButton = itemView.findViewById(R.id.whishlistButton);
+
+
+
+            whishlistButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Product clickedProduct = products.get(getBindingAdapterPosition());
+                    if(user.whishlistProducts.contains(clickedProduct.productId))
+                    {
+                        user.removeFromWhishlist(clickedProduct.productId,ctx,new VolleyCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        try{
+                            user.addToWhishlist(clickedProduct.productId,ctx, new VolleyCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                    whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_24);
+                                }
+                            });
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                    }
+                }
+            });
+
+
+            basketButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Product clickedProduct = products.get(getBindingAdapterPosition());
+                    if(user.basketProducts.contains(clickedProduct.productId))
+                    {
+                        user.removeFromBasket(clickedProduct.productId,ctx,new VolleyCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        try{
+                            user.addToBasket(clickedProduct.productId,1,ctx, new VolleyCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                    basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);
+                                }
+                            });
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                    }
+                }
+            });
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

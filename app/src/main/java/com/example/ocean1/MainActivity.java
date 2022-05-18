@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
 
-
         Button login = findViewById(R.id.loginBtn);
         Button register = findViewById(R.id.registerBtn);
 

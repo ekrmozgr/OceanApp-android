@@ -7,17 +7,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +34,8 @@ public class homepageFragment extends Fragment{
     Context ctx;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
-
+    TinyDB tinyDb;
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +46,9 @@ public class homepageFragment extends Fragment{
 
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
+
+        tinyDb = new TinyDB(ctx);
+        user = tinyDb.getObject("user", User.class);
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((homepageActivity)getActivity()).setSupportActionBar(toolbar);
@@ -67,18 +76,18 @@ public class homepageFragment extends Fragment{
                             ProductAdapter.OnItemClickListener clickListener = new ProductAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(int position) {
-                                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
                                 }
                             };
 
                             productAdapter = new ProductAdapter(ctx, products);
                             productAdapter.setOnItemClickListener(clickListener);
                             recyclerView.setAdapter(productAdapter);
+
+                            drawerLayout.closeDrawer(GravityCompat.START);
                         }
                     });
                 } catch (Exception e)
                 {
-
                 }
                 return true;
             }

@@ -52,7 +52,6 @@ public class User {
                     whishlistProducts = new ArrayList<Integer>();
                     basketProducts = new ArrayList<Integer>();
                     getWhishlist(context,callBack);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -177,6 +176,151 @@ public class User {
                         }
                     }
                 }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    void removeFromWhishlist(int productId, Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.favourites + "/" + id + "/products/" + productId;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, _url, null,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                    whishlistProducts.remove(Integer.valueOf(productId));
+                    callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    void addToWhishlist(int productId, Context context, final VolleyCallBack callBack) throws JSONException {
+        String _url = Api.favourites + "/products";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("productId", productId);
+        jsonBody.put("favouritesId", id);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                whishlistProducts.add(productId);
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    void removeFromBasket(int productId, Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.baskets + "/" + id + "/products/" + productId;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, _url, null,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                basketProducts.remove(Integer.valueOf(productId));
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+
+    void addToBasket(int productId, int productQuantity, Context context, final VolleyCallBack callBack) throws JSONException {
+        String _url = Api.baskets + "/products";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("productId", productId);
+        jsonBody.put("basketId", id);
+        jsonBody.put("productQuantity", productQuantity);
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                whishlistProducts.add(productId);
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 try{
