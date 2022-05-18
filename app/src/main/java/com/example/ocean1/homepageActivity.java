@@ -25,6 +25,8 @@ public class homepageActivity extends AppCompatActivity {
     accountFragment accountFragment = new accountFragment();
     couponsFragment couponsFragment = new couponsFragment();
     favoritesFragment favoritesFragment = new favoritesFragment();
+    basketFragment basketFragment=new basketFragment();
+
     public static HashMap<String,Integer> categories;
 
     @Override
@@ -34,6 +36,7 @@ public class homepageActivity extends AppCompatActivity {
 
         TinyDB tinyDb = new TinyDB(this);
         User user = tinyDb.getObject("user",User.class);
+
         if(user == null)
         {
             Intent i=new Intent(this,MainActivity.class);
@@ -68,6 +71,9 @@ public class homepageActivity extends AppCompatActivity {
                        return true;
                    case R.id.home:
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
+                       return true;
+                   case R.id.basket:
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,basketFragment).commit();
                        return true;
                }
                return false;
