@@ -50,7 +50,7 @@ public class Api {
             @Override
             public void onErrorResponse(VolleyError error) {
                 try{
-                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Error Codee : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
                 }catch (Exception e){
                     Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
                 }
