@@ -317,7 +317,7 @@ public class User {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                whishlistProducts.add(productId);
+                basketProducts.add(productId);
                 callBack.onSuccess();
             }
         }, new Response.ErrorListener() {

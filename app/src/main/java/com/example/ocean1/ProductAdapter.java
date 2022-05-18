@@ -120,8 +120,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
             basketButton = itemView.findViewById(R.id.basketButton);
             whishlistButton = itemView.findViewById(R.id.whishlistButton);
 
-
-
             whishlistButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -153,7 +151,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                 }
             });
 
-
             basketButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -184,7 +181,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                     }
                 }
             });
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
