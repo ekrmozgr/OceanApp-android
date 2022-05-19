@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -113,6 +114,7 @@ public class User {
 
     void getWhishlist(Context context, final VolleyCallBack callBack)
     {
+        whishlistProducts = new ArrayList<>();
         String _url = Api.favourites + "/" + id;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, _url, null,
                 new Response.Listener<JSONObject>() {
@@ -157,6 +159,7 @@ public class User {
 
     void getBasket(Context context, final VolleyCallBack callBack)
     {
+        basketProducts = new ArrayList<>();
         String _url = Api.baskets + "/" + id;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, _url, null,
                 new Response.Listener<JSONObject>() {
@@ -167,7 +170,6 @@ public class User {
                             for(int i = 0; i < productobjarr.length(); i++)
                             {
                                 JSONObject productobj = productobjarr.getJSONObject(i);
-
                                 basketProducts.add(productobj.getInt("productId"));
                             }
                             callBack.onSuccess();
@@ -344,4 +346,41 @@ public class User {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    void changeProductQuantity(int productId, int productQuantity, Context context, final VolleyCallBack callBack) throws JSONException {
+        String _url = Api.baskets + "/products";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("productId", productId);
+        jsonBody.put("basketId", id);
+        jsonBody.put("productQuantity", productQuantity);
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, _url, jsonBody,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
 }

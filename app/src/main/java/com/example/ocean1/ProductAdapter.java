@@ -35,10 +35,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         this.listener = listener;
     }
 
-    public ProductAdapter(Context ctx, ArrayList<Product> products)
+    public ProductAdapter(Context ctx, ArrayList<Product> products,User user)
     {
         this.ctx = ctx;
         this.products = products;
+        this.user = user;
     }
 
     @NonNull
@@ -69,9 +70,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
 
         boolean isInBasket = false;
         boolean isInWhislist = false;
-
-        TinyDB tinyDb = new TinyDB(ctx);
-        user = tinyDb.getObject("user",User.class);
 
         for (int productId: user.basketProducts) {
             if(productId == currentProduct.productId)

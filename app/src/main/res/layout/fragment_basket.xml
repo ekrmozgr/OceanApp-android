@@ -3,11 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".basketFragment">
+    tools:context=".basketFragment"
+    android:padding="5dp">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/receiverMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="20sp"
+        android:hint="Mail"
+        android:background="@drawable/input_bg"
+        android:drawableLeft="@drawable/ic_baseline_email_24_red"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        android:inputType="textEmailAddress"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/receiver"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/gradient_button"
+        android:text="GIFT" />
+
+    <TextView
+        android:id="@+id/totaltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total :"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@id/button"
+        android:layout_toLeftOf="@id/totalprice"
+        />
+
+    <TextView
+        android:id="@+id/totalprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/button"
+        android:layout_toLeftOf="@id/button"
+        android:text="0"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receiver : "
+        android:textSize="20sp"
+        android:layout_above="@id/button"
+        android:layout_toLeftOf="@id/receiverMail"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/receiver"/>
 
 </RelativeLayout>

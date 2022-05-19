@@ -1,6 +1,7 @@
 package com.example.ocean1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,9 @@ public class basketFragment extends Fragment {
     Context ctx;
     RecyclerView recyclerView;
     BasketAdapter basketAdapter;
+    TinyDB tinyDb;
+    User user;
+    TextView totalPrice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,16 +32,39 @@ public class basketFragment extends Fragment {
 
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
+        tinyDb = new TinyDB(ctx);
+        user = tinyDb.getObject("user",User.class);
+        totalPrice = view.findViewById(R.id.totalprice);
+        Basket basket = new Basket();
+        basket.getBasketProducts(basket,user.token, user.id, ctx,new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                recyclerView = view.findViewById(R.id.recycler_view);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
 
-        ArrayList<Product> products = new ArrayList<Product>();
-        recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
+                BasketAdapter.OnItemClickListener clickListener = new BasketAdapter.OnItemClickListener() {
+                    @Override
+                    public void onChangeClick(int position) {
+                        double price = 0;
+                        for (Product product: basket.products) {
+                            price += product.discountPrice * product.productQuantity;
+                        }
+                        totalPrice.setText(Double.toString(price));
+                    }
 
-        basketAdapter = new BasketAdapter(ctx, products);
-        recyclerView.setAdapter(basketAdapter);
+                    @Override
+                    public void onProductClick(int position) {
 
+                    }
+                };
 
+                basketAdapter = new BasketAdapter(ctx, basket.products);
+                basketAdapter.setOnItemClickListener(clickListener);
+                recyclerView.setAdapter(basketAdapter);
+                totalPrice.setText(Double.toString(basket.price) + " $");
+            }
+        });
 
         return view;
     }

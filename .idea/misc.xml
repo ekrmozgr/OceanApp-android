@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_email_24_red.xml" value="0.2245" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/basket_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_account.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_basket.xml" value="0.25" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_homepage.xml" value="0.13179347826086957" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_product.xml" value="0.29030797101449274" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_register.xml" value="0.18795289855072464" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/product_item.xml" value="0.182518115942029" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/gradient_button.xml" value="0.207" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.219" />

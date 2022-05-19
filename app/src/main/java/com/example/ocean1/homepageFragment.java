@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,9 +49,6 @@ public class homepageFragment extends Fragment{
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
 
-        tinyDb = new TinyDB(ctx);
-        user = tinyDb.getObject("user", User.class);
-
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((homepageActivity)getActivity()).setSupportActionBar(toolbar);
         DrawerLayout drawerLayout = view.findViewById(R.id.drawer);
@@ -69,21 +68,46 @@ public class homepageFragment extends Fragment{
                     Product.getCategoryProducts(id, products, ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
-                            recyclerView = view.findViewById(R.id.recycler_view);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
 
-                            ProductAdapter.OnItemClickListener clickListener = new ProductAdapter.OnItemClickListener() {
+                            tinyDb = new TinyDB(ctx);
+                            user = tinyDb.getObject("user", User.class);
+
+                            user.getWhishlist(ctx, new VolleyCallBack() {
                                 @Override
-                                public void onItemClick(int position) {
+                                public void onSuccess() {
+                                    recyclerView = view.findViewById(R.id.recycler_view);
+                                    recyclerView.setHasFixedSize(true);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
+
+                                    ProductAdapter.OnItemClickListener clickListener = new ProductAdapter.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(int position) {
+                                            Product currentProduct = products.get(position);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("productName",currentProduct.name);
+                                            bundle.putByteArray("image",currentProduct.image);
+                                            String description = currentProduct.companyName + "\n" + currentProduct.companyWebsite + "\n\n" + currentProduct.explanation + "\n\n\n" +
+                                                    "Category : " + currentProduct.categoryName + "\n" +
+                                                    "Level : " + currentProduct.courseLevel + "\n" +
+                                                    "Duration : " + currentProduct.courseHourDuration + "h " + currentProduct.courseMinuteDuration + "m\n" +
+                                                     "\n\n" + "Price : " + currentProduct.discountPrice + " $";
+                                            bundle.putString("description", description);
+
+                                            productFragment productFragment = new productFragment();
+                                            productFragment.setArguments(bundle);
+
+                                            FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                                            fm.replace(R.id.container,productFragment).addToBackStack(null).commit();
+                                        }
+                                    };
+
+                                    productAdapter = new ProductAdapter(ctx, products, user);
+                                    productAdapter.setOnItemClickListener(clickListener);
+                                    recyclerView.setAdapter(productAdapter);
+
+                                    drawerLayout.closeDrawer(GravityCompat.START);
                                 }
-                            };
-
-                            productAdapter = new ProductAdapter(ctx, products);
-                            productAdapter.setOnItemClickListener(clickListener);
-                            recyclerView.setAdapter(productAdapter);
-
-                            drawerLayout.closeDrawer(GravityCompat.START);
+                            });
                         }
                     });
                 } catch (Exception e)

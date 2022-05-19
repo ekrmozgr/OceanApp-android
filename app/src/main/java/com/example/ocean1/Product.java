@@ -39,6 +39,7 @@ public class Product {
     String companyWebsite;
     String companyName;
     boolean isAvailable;
+    int productQuantity;
 
     public static void getCategoryProducts(int categoryId, List<Product> products, Context context, final VolleyCallBack callBack)
     {
