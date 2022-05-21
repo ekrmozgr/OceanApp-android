@@ -27,6 +27,7 @@ public class Api {
     public static String orders = url + "/api/orders";
     public static String products = url + "/api/products";
     public static String users = url + "/api/users";
+    public static User user;
 
     public static void getCategories(HashMap<String,Integer> hashMap, Context context, final VolleyCallBack callBack)
     {

@@ -44,8 +44,6 @@ public class Product {
     public static void getCategoryProducts(int categoryId, List<Product> products, Context context, final VolleyCallBack callBack)
     {
         String _url = Api.products + "/categories/" + categoryId;
-        TinyDB tinyDb = new TinyDB(context);
-        User user = tinyDb.getObject("user",User.class);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, _url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -104,7 +102,7 @@ public class Product {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headerMap = new HashMap<String, String>();
-                headerMap.put("Authorization", "Bearer " + user.token);
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
                 return headerMap;
             }
         };
@@ -114,9 +112,7 @@ public class Product {
 
     public static void getFavouritesProducts(List<Product> _products, Context context, final VolleyCallBack callBack)
     {
-        TinyDB tinyDb = new TinyDB(context);
-        User user = tinyDb.getObject("user",User.class);
-        String _url = Api.favourites + "/" + user.id;
+        String _url = Api.favourites + "/" + Api.user.id;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, _url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -177,7 +173,7 @@ public class Product {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headerMap = new HashMap<String, String>();
-                headerMap.put("Authorization", "Bearer " + user.token);
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
                 return headerMap;
             }
         };

@@ -51,13 +51,13 @@ public class loginFragment extends Fragment {
             public void onClick(View view) {
                 email = etemail.getText().toString();
                 password = etpassword.getText().toString();
-                User user = new User();
+                Api.user = new User();
                 try {
-                    user.login(email,password,ctx,new VolleyCallBack() {
+                    Api.user.login(email,password,ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
                             TinyDB tinyDb = new TinyDB(ctx);
-                            tinyDb.putObject("user",user);
+                            tinyDb.putObject("user",Api.user);
                             Intent i=new Intent(getActivity(),homepageActivity.class);
                             startActivity(i);
                             mainActivity.finish();

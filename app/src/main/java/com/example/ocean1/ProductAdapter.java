@@ -24,7 +24,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
     private Context ctx;
     private ArrayList<Product> products;
     OnItemClickListener listener;
-    User user;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -35,11 +34,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         this.listener = listener;
     }
 
-    public ProductAdapter(Context ctx, ArrayList<Product> products,User user)
+    public ProductAdapter(Context ctx, ArrayList<Product> products)
     {
         this.ctx = ctx;
         this.products = products;
-        this.user = user;
     }
 
     @NonNull
@@ -71,14 +69,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         boolean isInBasket = false;
         boolean isInWhislist = false;
 
-        for (int productId: user.basketProducts) {
+        for (int productId: Api.user.basketProducts) {
             if(productId == currentProduct.productId)
             {
                 isInBasket = true;
                 break;
             }
         }
-        for (int productId: user.whishlistProducts) {
+        for (int productId: Api.user.whishlistProducts) {
             if(productId == currentProduct.productId)
             {
                 isInWhislist = true;
@@ -122,9 +120,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                 @Override
                 public void onClick(View view) {
                     Product clickedProduct = products.get(getBindingAdapterPosition());
-                    if(user.whishlistProducts.contains(clickedProduct.productId))
+                    if(Api.user.whishlistProducts.contains(clickedProduct.productId))
                     {
-                        user.removeFromWhishlist(clickedProduct.productId,ctx,new VolleyCallBack() {
+                        Api.user.removeFromWhishlist(clickedProduct.productId,ctx,new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
@@ -134,7 +132,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                     else
                     {
                         try{
-                            user.addToWhishlist(clickedProduct.productId,ctx, new VolleyCallBack() {
+                            Api.user.addToWhishlist(clickedProduct.productId,ctx, new VolleyCallBack() {
                                 @Override
                                 public void onSuccess() {
                                     whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_24);
@@ -153,9 +151,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                 @Override
                 public void onClick(View view) {
                     Product clickedProduct = products.get(getBindingAdapterPosition());
-                    if(user.basketProducts.contains(clickedProduct.productId))
+                    if(Api.user.basketProducts.contains(clickedProduct.productId))
                     {
-                        user.removeFromBasket(clickedProduct.productId,ctx,new VolleyCallBack() {
+                        Api.user.removeFromBasket(clickedProduct.productId,ctx,new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
@@ -165,7 +163,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
                     else
                     {
                         try{
-                            user.addToBasket(clickedProduct.productId,1,ctx, new VolleyCallBack() {
+                            Api.user.addToBasket(clickedProduct.productId,1,ctx, new VolleyCallBack() {
                                 @Override
                                 public void onSuccess() {
                                     basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);

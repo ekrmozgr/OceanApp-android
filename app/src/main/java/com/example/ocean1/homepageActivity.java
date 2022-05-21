@@ -35,9 +35,9 @@ public class homepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         TinyDB tinyDb = new TinyDB(this);
-        User user = tinyDb.getObject("user",User.class);
+        Api.user = tinyDb.getObject("user",User.class);
 
-        if(user == null)
+        if(Api.user == null)
         {
             Intent i=new Intent(this,MainActivity.class);
             startActivity(i);

@@ -21,8 +21,6 @@ public class basketFragment extends Fragment {
     Context ctx;
     RecyclerView recyclerView;
     BasketAdapter basketAdapter;
-    TinyDB tinyDb;
-    User user;
     TextView totalPrice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,11 +30,9 @@ public class basketFragment extends Fragment {
 
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
-        tinyDb = new TinyDB(ctx);
-        user = tinyDb.getObject("user",User.class);
         totalPrice = view.findViewById(R.id.totalprice);
         Basket basket = new Basket();
-        basket.getBasketProducts(basket,user.token, user.id, ctx,new VolleyCallBack() {
+        basket.getBasketProducts(basket,Api.user.token, Api.user.id, ctx,new VolleyCallBack() {
             @Override
             public void onSuccess() {
                 recyclerView = view.findViewById(R.id.recycler_view);

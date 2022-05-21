@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,10 @@ public class productFragment extends Fragment {
     TextView productName;
     ImageView image;
     TextView description;
+    ImageButton whishlistButton;
+    ImageButton basketButton;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,15 +35,91 @@ public class productFragment extends Fragment {
         productName = view.findViewById(R.id.product_name);
         image = view.findViewById(R.id.photo);
         description = view.findViewById(R.id.description);
-        Bundle bundle = this.getArguments();
+        basketButton = view.findViewById(R.id.basketButton);
+        whishlistButton = view.findViewById(R.id.whishlistButton);
 
+        Bundle bundle = this.getArguments();
+        final int productId;
         if(bundle != null){
             productName.setText(bundle.getString("productName"));
             description.setText(bundle.getString("description"));
             Bitmap bitmap = BitmapFactory.decodeByteArray(bundle.getByteArray("image"), 0, bundle.getByteArray("image").length);
             Bitmap resized = Bitmap.createScaledBitmap(bitmap, 400, 200,true);
             image.setImageBitmap(resized);
+            productId = bundle.getInt("productId");
         }
+        else
+            productId = 0;
+
+        if(Api.user.basketProducts.contains(Integer.valueOf(productId)))
+            basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);
+        else
+            basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
+
+        if(Api.user.whishlistProducts.contains(Integer.valueOf(productId)))
+            whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_24);
+        else
+            whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+
+        basketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Api.user.basketProducts.contains(productId))
+                {
+                    Api.user.removeFromBasket(productId,ctx,new VolleyCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
+                        }
+                    });
+                }
+                else
+                {
+                    try{
+                        Api.user.addToBasket(productId,1,ctx, new VolleyCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+        });
+
+        whishlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Api.user.whishlistProducts.contains(productId))
+                {
+                    Api.user.removeFromWhishlist(productId,ctx,new VolleyCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                        }
+                    });
+                }
+                else
+                {
+                    try{
+                        Api.user.addToWhishlist(productId,ctx, new VolleyCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                whishlistButton.setImageResource(R.drawable.ic_baseline_favorite_24);
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+        });
 
         return view;
     }

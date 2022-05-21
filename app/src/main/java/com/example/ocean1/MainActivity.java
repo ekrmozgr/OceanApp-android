@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         TinyDB tinyDb = new TinyDB(this);
-        User user = tinyDb.getObject("user",User.class);
-        if(user != null)
+        Api.user = tinyDb.getObject("user",User.class);
+        if(Api.user != null)
         {
             Intent i=new Intent(this,homepageActivity.class);
             startActivity(i);

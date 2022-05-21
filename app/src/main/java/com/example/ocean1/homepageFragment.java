@@ -36,8 +36,6 @@ public class homepageFragment extends Fragment{
     Context ctx;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
-    TinyDB tinyDb;
-    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,11 +66,7 @@ public class homepageFragment extends Fragment{
                     Product.getCategoryProducts(id, products, ctx,new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
-
-                            tinyDb = new TinyDB(ctx);
-                            user = tinyDb.getObject("user", User.class);
-
-                            user.getWhishlist(ctx, new VolleyCallBack() {
+                            Api.user.getWhishlist(ctx, new VolleyCallBack() {
                                 @Override
                                 public void onSuccess() {
                                     recyclerView = view.findViewById(R.id.recycler_view);
@@ -84,6 +78,7 @@ public class homepageFragment extends Fragment{
                                         public void onItemClick(int position) {
                                             Product currentProduct = products.get(position);
                                             Bundle bundle = new Bundle();
+                                            bundle.putInt("productId",currentProduct.productId);
                                             bundle.putString("productName",currentProduct.name);
                                             bundle.putByteArray("image",currentProduct.image);
                                             String description = currentProduct.companyName + "\n" + currentProduct.companyWebsite + "\n\n" + currentProduct.explanation + "\n\n\n" +
@@ -101,7 +96,7 @@ public class homepageFragment extends Fragment{
                                         }
                                     };
 
-                                    productAdapter = new ProductAdapter(ctx, products, user);
+                                    productAdapter = new ProductAdapter(ctx, products);
                                     productAdapter.setOnItemClickListener(clickListener);
                                     recyclerView.setAdapter(productAdapter);
 

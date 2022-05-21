@@ -91,12 +91,10 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketItem
                     int _quantity = Integer.parseInt(quantity.getText().toString());
                     if(_quantity < 10)
                         _quantity++;
-                    TinyDB tinyDB = new TinyDB(ctx);
-                    User user = tinyDB.getObject("user",User.class);
                     products.get(getBindingAdapterPosition()).productQuantity = _quantity;
 
                     try {
-                        user.changeProductQuantity(products.get(getBindingAdapterPosition()).productId, _quantity, ctx, new VolleyCallBack() {
+                        Api.user.changeProductQuantity(products.get(getBindingAdapterPosition()).productId, _quantity, ctx, new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 listener.onChangeClick(getBindingAdapterPosition());
@@ -116,12 +114,10 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketItem
                     int _quantity = Integer.parseInt(quantity.getText().toString());
                     if(_quantity >= 2)
                         _quantity--;
-                    TinyDB tinyDB = new TinyDB(ctx);
-                    User user = tinyDB.getObject("user",User.class);
                     products.get(getBindingAdapterPosition()).productQuantity = _quantity;
 
                     try {
-                        user.changeProductQuantity(products.get(getBindingAdapterPosition()).productId, _quantity, ctx, new VolleyCallBack() {
+                        Api.user.changeProductQuantity(products.get(getBindingAdapterPosition()).productId, _quantity, ctx, new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 listener.onChangeClick(getBindingAdapterPosition());
@@ -138,9 +134,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketItem
             basketButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TinyDB tinyDB = new TinyDB(ctx);
-                    User user = tinyDB.getObject("user",User.class);
-                    user.removeFromBasket(products.get(getBindingAdapterPosition()).productId, ctx, new VolleyCallBack() {
+                    Api.user.removeFromBasket(products.get(getBindingAdapterPosition()).productId, ctx, new VolleyCallBack() {
                         @Override
                         public void onSuccess() {
                             products.remove(getBindingAdapterPosition());

@@ -36,9 +36,7 @@ public class Order {
 
     public static void getOrders(List<Order> orders, Context context, final VolleyCallBack callBack)
     {
-        TinyDB tinyDb = new TinyDB(context);
-        User user = tinyDb.getObject("user",User.class);
-        String _url = Api.orders + "/users/" + user.id;
+        String _url = Api.orders + "/users/" + Api.user.id;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, _url, null,
                 new Response.Listener<JSONArray>() {
@@ -134,7 +132,7 @@ public class Order {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headerMap = new HashMap<String, String>();
-                headerMap.put("Authorization", "Bearer " + user.token);
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
                 return headerMap;
             }
         };
