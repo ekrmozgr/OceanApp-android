@@ -26,6 +26,7 @@ public class User {
     String role;
     String email;
     String name;
+    String phone;
     ArrayList<Integer> whishlistProducts;
     ArrayList<Integer> basketProducts;
 
@@ -50,6 +51,7 @@ public class User {
                     role = jsonObject.getString("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
                     email = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
                     name = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+                    phone = jsonObject.getString("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone");
                     whishlistProducts = new ArrayList<Integer>();
                     basketProducts = new ArrayList<Integer>();
                     getWhishlist(context,callBack);
