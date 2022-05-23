@@ -37,6 +37,7 @@ public class homeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         NavigationView navigationView = view.findViewById(R.id.navmenu);
+
         isItemSelected = false;
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
@@ -85,7 +86,7 @@ public class homeFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("categoryId",item.getItemId());
                 homepageFragment.setArguments(bundle);
-                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.closeDrawer(GravityCompat.START,true);
                 isItemSelected = true;
                 return true;
             }

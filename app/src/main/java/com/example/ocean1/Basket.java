@@ -111,6 +111,7 @@ public class Basket {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Api.user.basketProducts.clear();
                         callBack.onSuccess();
                     }
                 }, new Response.ErrorListener() {

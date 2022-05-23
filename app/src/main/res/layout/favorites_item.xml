@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/productImage"
+            android:layout_toLeftOf="@id/deleteProduct"
             android:text="Product Name"
             android:textColor="@color/black"
             android:textSize="20sp" />

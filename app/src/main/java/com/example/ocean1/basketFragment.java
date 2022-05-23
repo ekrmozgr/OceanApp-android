@@ -106,7 +106,7 @@ public class basketFragment extends Fragment {
                 Basket.purchaseBasket(Api.user.id, receiverMail.getText().toString(), ctx, new VolleyCallBack() {
                     @Override
                     public void onSuccess() {
-                        // basarili sayfasi
+                        System.out.println("satinalmabasarili");
                     }
                 });
             }

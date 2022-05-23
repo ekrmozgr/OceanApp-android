@@ -24,7 +24,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
     private Context ctx;
     private ArrayList<Product> products;
     OnItemClickListener listener;
-    User user;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -70,10 +69,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
         boolean isInBasket = false;
 
 
-        TinyDB tinyDb = new TinyDB(ctx);
-        user = tinyDb.getObject("user",User.class);
-
-        for (int productId: user.basketProducts) {
+        for (int productId: Api.user.basketProducts) {
             if(productId == currentProduct.productId)
             {
                 isInBasket = true;
@@ -114,9 +110,9 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
                 @Override
                 public void onClick(View view) {
                     Product clickedProduct = products.get(getBindingAdapterPosition());
-                    if(user.whishlistProducts.contains(clickedProduct.productId))
+                    if(Api.user.whishlistProducts.contains(clickedProduct.productId))
                     {
-                        user.removeFromWhishlist(clickedProduct.productId,ctx,new VolleyCallBack() {
+                        Api.user.removeFromWhishlist(clickedProduct.productId,ctx,new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 products.remove(getBindingAdapterPosition());
@@ -131,9 +127,9 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
                 @Override
                 public void onClick(View view) {
                     Product clickedProduct = products.get(getBindingAdapterPosition());
-                    if(user.basketProducts.contains(clickedProduct.productId))
+                    if(Api.user.basketProducts.contains(clickedProduct.productId))
                     {
-                        user.removeFromBasket(clickedProduct.productId,ctx,new VolleyCallBack() {
+                        Api.user.removeFromBasket(clickedProduct.productId,ctx,new VolleyCallBack() {
                             @Override
                             public void onSuccess() {
                                 basketButton.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24);
@@ -143,7 +139,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
                     else
                     {
                         try{
-                            user.addToBasket(clickedProduct.productId,1,ctx, new VolleyCallBack() {
+                            Api.user.addToBasket(clickedProduct.productId,1,ctx, new VolleyCallBack() {
                                 @Override
                                 public void onSuccess() {
                                     basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);

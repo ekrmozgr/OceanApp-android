@@ -9,14 +9,16 @@
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_question_answer_24.xml" value="0.1" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_remove_shopping_cart_24.xml" value="0.187" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.1" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/nav_bar.xml" value="0.142" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/drawable/navview_title.xml" value="0.142" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/basket_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/comment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/favorites_item.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/favorites_item.xml" value="0.33" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_account.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_basket.xml" value="0.25" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_favorites.xml" value="0.21331521739130435" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_forgottenpw.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_homepage.xml" value="0.22" />
@@ -25,6 +27,7 @@
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/fragment_register.xml" value="0.18795289855072464" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/nav_header.xml" value="0.2427536231884058" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/layout/product_item.xml" value="0.33" />
+        <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2515625" />
         <entry key="..\:/Users/ekrem/AndroidStudioProjects/ocean1/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/gradient_button.xml" value="0.207" />
         <entry key="..\:/Users/hacer/AndroidStudioProjects/ocean1/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.219" />
