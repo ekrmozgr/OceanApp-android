@@ -62,6 +62,36 @@ public class Api {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    public static void getCompany(HashMap<String,String> hashMap,Context context, final VolleyCallBack callBack)
+    {
+        String _url = infos + "/company";
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, _url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    hashMap.put("companyName",response.getString("companyName"));
+                    hashMap.put("email", response.getString("email"));
+                    hashMap.put("address",response.getString("address"));
+                    hashMap.put("phoneNo",response.getString("phoneNo"));
+                    callBack.onSuccess();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
     public static void forgottenPw(String email, Context context, final VolleyCallBack callBack)
     {
         String _url = login + "/forgottenpw";

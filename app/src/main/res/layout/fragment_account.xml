@@ -56,35 +56,9 @@
             android:textColor="@android:color/black"
             android:clickable="true"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_baseline_comment_24"
-            android:drawablePadding="10dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="My Comments"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_baseline_question_answer_24"
-            android:drawablePadding="10dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="Frequently Asked Questions"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -99,6 +73,7 @@
             android:textColor="@android:color/black"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

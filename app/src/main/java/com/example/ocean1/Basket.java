@@ -95,7 +95,7 @@ public class Basket {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    static void purchaseBasket(int basketId, String receiver, Context context, final VolleyCallBack callBack)
+     public  static void purchaseBasket(int basketId, String receiver, Context context, final VolleyCallBack callBack)
     {
         String _url = Api.baskets + "/purchase";
 
@@ -107,7 +107,7 @@ public class Basket {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, _url, jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -124,10 +124,7 @@ public class Basket {
                 }
             }
         }){
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headerMap = new HashMap<String, String>();

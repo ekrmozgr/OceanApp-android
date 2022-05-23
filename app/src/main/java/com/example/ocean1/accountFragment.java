@@ -14,15 +14,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class accountFragment extends Fragment {
 
     homepageActivity homepageActivity;
     myProfileFragment myProfileFragment=new myProfileFragment();
+    contactFragment contactFragment = new contactFragment();
+    aboutragment aboutragment= new aboutragment();
     Context ctx;
     TextView _myProfile;
+    TextView _contact;
     TextView tvemail;
     TextView tvname;
+    TextView _about;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +58,22 @@ public class accountFragment extends Fragment {
             public void onClick(View view) {
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.container,myProfileFragment).addToBackStack(null).commit();
+            }
+        });
+        _contact = view.findViewById(R.id.contact);
+        _contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container, contactFragment).addToBackStack(null).commit();
+            }
+        });
+        _about=view.findViewById(R.id.about);
+        _about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container, aboutragment).addToBackStack(null).commit();
             }
         });
         return view;
