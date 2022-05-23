@@ -20,8 +20,7 @@ import java.util.HashMap;
 
 public class homepageActivity extends AppCompatActivity {
 
-
-    homepageFragment homepageFragment = new homepageFragment();
+    homeFragment homeFragment = new homeFragment();
     accountFragment accountFragment = new accountFragment();
     couponsFragment couponsFragment = new couponsFragment();
     favoritesFragment favoritesFragment = new favoritesFragment();
@@ -54,14 +53,14 @@ public class homepageActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch(item.getItemId()){
                    case R.id.account:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).addToBackStack("homepageFragment").commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,accountFragment).addToBackStack(null).commit();
                        return true;
                    case R.id.favorites:
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,favoritesFragment).addToBackStack(null).commit();
@@ -70,7 +69,7 @@ public class homepageActivity extends AppCompatActivity {
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,couponsFragment).addToBackStack(null).commit();
                        return true;
                    case R.id.home:
-                       getSupportFragmentManager().beginTransaction().replace(R.id.container,homepageFragment).commit();
+                       getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
                        return true;
                    case R.id.basket:
                        getSupportFragmentManager().beginTransaction().replace(R.id.container,basketFragment).commit();

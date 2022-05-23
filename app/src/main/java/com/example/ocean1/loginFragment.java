@@ -43,6 +43,16 @@ public class loginFragment extends Fragment {
             }
         });
 
+        View goForgottenPw = view.findViewById(R.id.forgotpw);
+        goForgottenPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new forgottenPwFragment());
+                fr.commit();
+            }
+        });
+
         Button signin =view.findViewById(R.id.signin);
         mainActivity=(MainActivity)getActivity();
         ctx = mainActivity.getApplicationContext();

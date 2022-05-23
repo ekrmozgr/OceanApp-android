@@ -12,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class productFragment extends Fragment {
 
@@ -22,7 +26,9 @@ public class productFragment extends Fragment {
     TextView description;
     ImageButton whishlistButton;
     ImageButton basketButton;
-
+    RecyclerView recyclerView;
+    CommentAdapter commentAdapter;
+    TextView tprice;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,12 +43,15 @@ public class productFragment extends Fragment {
         description = view.findViewById(R.id.description);
         basketButton = view.findViewById(R.id.basketButton);
         whishlistButton = view.findViewById(R.id.whishlistButton);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        tprice = view.findViewById(R.id.productprice);
 
         Bundle bundle = this.getArguments();
         final int productId;
         if(bundle != null){
             productName.setText(bundle.getString("productName"));
             description.setText(bundle.getString("description"));
+            tprice.setText(bundle.getString("price"));
             Bitmap bitmap = BitmapFactory.decodeByteArray(bundle.getByteArray("image"), 0, bundle.getByteArray("image").length);
             Bitmap resized = Bitmap.createScaledBitmap(bitmap, 400, 200,true);
             image.setImageBitmap(resized);
@@ -120,6 +129,20 @@ public class productFragment extends Fragment {
                 }
             }
         });
+
+
+        ArrayList<Comments> comments = new ArrayList<>();
+        Product.getProductComments(productId, comments, ctx, new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
+
+                commentAdapter = new CommentAdapter(ctx, comments);
+                recyclerView.setAdapter(commentAdapter);
+            }
+        });
+
 
         return view;
     }

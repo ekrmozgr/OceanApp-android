@@ -94,4 +94,46 @@ public class Basket {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    static void purchaseBasket(int basketId, String receiver, Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.baskets + "/purchase";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("basketId",basketId);
+            jsonBody.put("email",receiver);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        callBack.onSuccess();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Code : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
 }

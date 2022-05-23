@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +38,8 @@ public class homepageFragment extends Fragment{
     Context ctx;
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
+    DrawerLayout drawerLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ public class homepageFragment extends Fragment{
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((homepageActivity)getActivity()).setSupportActionBar(toolbar);
-        DrawerLayout drawerLayout = view.findViewById(R.id.drawer);
+        drawerLayout = view.findViewById(R.id.drawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( (homepageActivity)getActivity(), drawerLayout,toolbar,R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -81,13 +85,13 @@ public class homepageFragment extends Fragment{
                                             bundle.putInt("productId",currentProduct.productId);
                                             bundle.putString("productName",currentProduct.name);
                                             bundle.putByteArray("image",currentProduct.image);
-                                            String description = currentProduct.companyName + "\n" + currentProduct.companyWebsite + "\n\n" + currentProduct.explanation + "\n\n\n" +
+                                            String description = currentProduct.companyName + "\n" + currentProduct.companyWebsite + "\n\n" + currentProduct.explanation + "\n\n" +
                                                     "Category : " + currentProduct.categoryName + "\n" +
                                                     "Level : " + currentProduct.courseLevel + "\n" +
-                                                    "Duration : " + currentProduct.courseHourDuration + "h " + currentProduct.courseMinuteDuration + "m\n" +
-                                                     "\n\n" + "Price : " + currentProduct.discountPrice + " $";
+                                                    "Duration : " + currentProduct.courseHourDuration + "h " + currentProduct.courseMinuteDuration + "m\n";
                                             bundle.putString("description", description);
-
+                                            String price = "Price : " + currentProduct.discountPrice + " $";
+                                            bundle.putString("price",price);
                                             productFragment productFragment = new productFragment();
                                             productFragment.setArguments(bundle);
 
@@ -111,6 +115,67 @@ public class homepageFragment extends Fragment{
                 return true;
             }
         });
+
+
+        Bundle bundle = this.getArguments();
+        if(bundle != null)
+        {
+            navigationView.setCheckedItem(bundle.getInt("categoryId"));
+            if(navigationView.getCheckedItem() != null)
+            {
+                String key = navigationView.getCheckedItem().getTitle().toString().trim().toLowerCase();
+                int id;
+                try {
+                    id = homepageActivity.categories.get(key);
+                    ArrayList<Product> products = new ArrayList<Product>();
+                    Product.getCategoryProducts(id, products, ctx,new VolleyCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            Api.user.getWhishlist(ctx, new VolleyCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                    recyclerView = view.findViewById(R.id.recycler_view);
+                                    recyclerView.setHasFixedSize(true);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
+
+                                    ProductAdapter.OnItemClickListener clickListener = new ProductAdapter.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(int position) {
+                                            Product currentProduct = products.get(position);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putInt("productId",currentProduct.productId);
+                                            bundle.putString("productName",currentProduct.name);
+                                            bundle.putByteArray("image",currentProduct.image);
+                                            String description = currentProduct.companyName + "\n" + currentProduct.companyWebsite + "\n\n" + currentProduct.explanation + "\n\n" +
+                                                    "Category : " + currentProduct.categoryName + "\n" +
+                                                    "Level : " + currentProduct.courseLevel + "\n" +
+                                                    "Duration : " + currentProduct.courseHourDuration + "h " + currentProduct.courseMinuteDuration + "m\n";
+                                            bundle.putString("description", description);
+                                            String price = "Price : " + currentProduct.discountPrice + " $";
+                                            bundle.putString("price",price);
+                                            productFragment productFragment = new productFragment();
+                                            productFragment.setArguments(bundle);
+
+                                            FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                                            fm.replace(R.id.container,productFragment).addToBackStack(null).commit();
+                                        }
+                                    };
+
+                                    productAdapter = new ProductAdapter(ctx, products);
+                                    productAdapter.setOnItemClickListener(clickListener);
+                                    recyclerView.setAdapter(productAdapter);
+
+                                    drawerLayout.closeDrawer(GravityCompat.START);
+                                }
+                            });
+                        }
+                    });
+                } catch (Exception e)
+                {
+                }
+            }
+        }
+
         return view;
     }
 }

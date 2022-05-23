@@ -144,6 +144,18 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketItem
                     });
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null)
+                    {
+                        int position = getBindingAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION)
+                            listener.onProductClick(position);
+                    }
+                }
+            });
         }
     }
 

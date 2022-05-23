@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".basketFragment"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:tag="basketFragmentTag">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/receiverMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="20sp"
-        android:hint="Mail"
+        android:layout_alignBaseline="@id/receiver"
+        android:layout_alignParentRight="true"
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_baseline_email_24_red"
         android:drawablePadding="10dp"
-        android:paddingLeft="10dp"
+        android:ems="10"
+        android:hint="Mail"
         android:inputType="textEmailAddress"
-        android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/receiver"
-        />
+        android:paddingLeft="10dp"
+        android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/buybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Total :"
         android:textSize="20sp"
-        android:layout_alignBaseline="@id/button"
+        android:layout_alignBaseline="@id/buybutton"
         android:layout_toLeftOf="@id/totalprice"
         />
 
@@ -48,8 +48,8 @@
         android:id="@+id/totalprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/button"
-        android:layout_toLeftOf="@id/button"
+        android:layout_alignBaseline="@id/buybutton"
+        android:layout_toLeftOf="@id/buybutton"
         android:text="0"
         android:textSize="20sp" />
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="Receiver : "
         android:textSize="20sp"
-        android:layout_above="@id/button"
+        android:layout_above="@id/buybutton"
         android:layout_toLeftOf="@id/receiverMail"
         />
 
@@ -68,6 +68,6 @@
         android:id="@+id/recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_above="@id/receiver"/>
+        android:layout_above="@id/receiver" />
 
 </RelativeLayout>

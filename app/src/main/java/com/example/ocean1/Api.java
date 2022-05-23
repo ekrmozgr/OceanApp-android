@@ -3,6 +3,7 @@ package com.example.ocean1;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -14,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Api {
     public static String url = "http://10.0.2.2:7157";
@@ -57,6 +59,36 @@ public class Api {
                 }
             }
         });
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    public static void forgottenPw(String email, Context context, final VolleyCallBack callBack)
+    {
+        String _url = login + "/forgottenpw";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("email", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 }

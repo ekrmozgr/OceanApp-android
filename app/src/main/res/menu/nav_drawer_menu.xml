@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/cat1"
-        android:title="Cloud"/>
+        android:title="Cloud"
+        android:checkable="true"/>
     <item android:id="@+id/cat2"
-        android:title="DevOps"/>
+        android:title="DevOps"
+        android:checkable="true"/>
     <item android:id="@+id/cat3"
-        android:title="ERP"/>
+        android:title="ERP"
+        android:checkable="true"/>
     <item android:id="@+id/cat4"
-        android:title="Game Design Development"/>
+        android:title="Game Design Development"
+        android:checkable="true"/>
     <item android:id="@+id/cat5"
-        android:title="Network Tehcnologies"/>
+        android:title="Network Tehcnologies"
+        android:checkable="true"/>
     <item android:id="@+id/cat6"
-        android:title="Cyber Security"/>
+        android:title="Cyber Security"
+        android:checkable="true"/>
     <item android:id="@+id/cat7"
-        android:title="UI/UX Design"/>
+        android:title="UI/UX Design"
+        android:checkable="true"/>
     <item android:id="@+id/cat8"
-        android:title="Data Science"/>
+        android:title="Data Science"
+        android:checkable="true"/>
     <item android:id="@+id/cat9"
-        android:title="Backend Developer"/>
+        android:title="Backend Developer"
+        android:checkable="true"/>
     <item android:id="@+id/cat10"
-        android:title="Frontend Developer"/>
+        android:title="Frontend Developer"
+        android:checkable="true"/>
     <item android:id="@+id/cat12"
-        android:title="Fullstack Developer"/>
+        android:title="Fullstack Developer"
+        android:checkable="true"/>
     <item android:id="@+id/cat11"
-        android:title="Game Developer"/>
+        android:title="Game Developer"
+        android:checkable="true"/>
     <item android:id="@+id/cat13"
-        android:title="Mobile Developer"/>
-
-
+        android:title="Mobile Developer"
+        android:checkable="true"/>
 </menu>

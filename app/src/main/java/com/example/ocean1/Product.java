@@ -179,4 +179,48 @@ public class Product {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    public static void getProductComments(int productId, List<Comments> comments, Context context, final VolleyCallBack callBack)
+    {
+        String _url = Api.comments + "/products/" + productId;
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, _url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for(int i = 0; i < response.length(); i++)
+                {
+                    Comments currentComment = new Comments();
+                    try {
+                        JSONObject commentobj = response.getJSONObject(i);
+                        currentComment.id = commentobj.getInt("id");
+                        currentComment.dateOfComment = commentobj.getString("dateOfComment");
+                        currentComment.comment = commentobj.getString("comment");
+                        JSONObject commentuserobj = commentobj.getJSONObject("user");
+                        currentComment.userName = commentuserobj.getString("name");
+                        currentComment.userSurname = commentuserobj.getString("surname");
+                        comments.add(currentComment);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
 }

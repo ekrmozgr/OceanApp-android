@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:clickable="true"
-            android:text="Zaten bir hesabınız var mı? Oturum Aç "
+            android:text="Do you already have an account? Sign In"
             android:textColor="@color/white"
             android:textSize="18sp" />
 

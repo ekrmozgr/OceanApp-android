@@ -6,199 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-
-
-
-
-    <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="300dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="578dp">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Hi Rechard"
-                    android:textColor="#00CAFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Order &amp; Gift"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4"
-                    app:srcCompat="@drawable/gradient_button" />
-
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-
-
-                    android:drawablePadding="10dp"
-                    android:ems="10"
-                    android:hint="Find Your Course"
-                    android:inputType="textPersonName"
-                    android:paddingStart="20dp"
-                    android:textSize="14sp"
-                    android:textStyle="italic"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="173dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"
-                         />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="101dp"
-                        android:layout_height="57dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="2dp"
-                        android:text="Get access to thousands of courses!"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="101dp"
-                        android:layout_height="57dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginBottom="16dp"
-                        android:text="Choose, Order and Your Gift is Ready!"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-
-                    app:layout_constraintEnd_toEndOf="@id/constraintLayout"
-                    app:layout_constraintStart_toStartOf="@id/constraintLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-                    <ImageView
-                        android:id="@+id/image1"
-                        android:layout_width="173dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"
-                         />
-
-                    <TextView
-                        android:id="@+id/text1"
-                        android:layout_width="75dp"
-                        android:layout_height="26dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="2dp"
-                        android:text="Pay Easily !"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/image1"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/text2"
-                        android:layout_width="102dp"
-                        android:layout_height="99dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="You can easily make payments from all bank cards and credit cards."
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/image1"
-                        app:layout_constraintTop_toBottomOf="@+id/text1"
-                        app:layout_constraintVertical_bias="0.555" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
@@ -210,7 +17,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navmenu"
@@ -218,7 +26,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header"
-            app:menu="@menu/nav_drawer_menu">
+            app:menu="@menu/nav_drawer_menu"
+            app:itemBackground="@android:color/transparent">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -228,7 +37,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gradient_button"
+                    android:background="@drawable/navview_title"
                     app:title="CATEGORIES"
                     app:titleTextColor="@color/cardview_light_background" />
             </RelativeLayout>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginFragment"
-    android:id="@+id/login">
+    tools:context=".forgottenPwFragment"
+    android:id="@+id/forgottenpw">
 
 
     <ImageView
@@ -49,44 +49,16 @@
             android:textColorHint="@color/white"
             android:textSize="24sp"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/input_bg"
-            android:drawableLeft="@drawable/ic_baseline_security_24"
-            android:drawablePadding="10dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="24sp" />
-
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signin"
+            android:id="@+id/sendpw"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/gradient_button"
-            android:text="sıgn ın " />
+            android:text="Send Password" />
 
         <TextView
-            android:id="@+id/forgotpw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="18sp"
-            android:clickable="true"
-            android:text="I forgot my password!"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:id="@+id/backMain"
+            android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -94,6 +66,18 @@
             android:clickable="true"
             android:text="Don't have an account? Sign up"
             android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:clickable="true"
+            android:text="Sign In"
+            android:textColor="@color/white"/>
+
+
 
 
     </LinearLayout>
