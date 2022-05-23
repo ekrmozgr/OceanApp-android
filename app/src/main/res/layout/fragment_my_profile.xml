@@ -35,7 +35,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/name"
-            android:layout_width="357dp"
+            android:layout_width="366dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#A9F1E6"

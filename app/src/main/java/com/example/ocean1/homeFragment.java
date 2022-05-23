@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,7 @@ public class homeFragment extends Fragment {
     AppCompatImageButton button;
     DrawerLayout drawerLayout;
     boolean isItemSelected;
+    ScrollView scrollView;
     homepageFragment homepageFragment = new homepageFragment();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +48,14 @@ public class homeFragment extends Fragment {
         name = view.findViewById(R.id.textView4);
         name.setText("Hi, " + Api.user.name);
         button = view.findViewById(R.id.imageView3);
+        scrollView = view.findViewById(R.id.scrollview);
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
