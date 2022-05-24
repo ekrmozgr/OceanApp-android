@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,6 +118,56 @@ public class Api {
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    public static void postComment(ArrayList<Comments> commentList, String comment, int productId, Context context, final VolleyCallBack callBack)
+    {
+        String _url = comments;
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("comment", comment);
+            jsonBody.put("userId",Api.user.id);
+            jsonBody.put("productId",productId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Comments currentComment = new Comments();
+                try {
+                    currentComment.id = response.getInt("id");
+                    currentComment.dateOfComment = response.getString("dateOfComment");
+                    currentComment.comment = response.getString("comment");
+                    JSONObject commentuserobj = response.getJSONObject("user");
+                    currentComment.userName = commentuserobj.getString("name");
+                    currentComment.userSurname = commentuserobj.getString("surname");
+                    commentList.add(currentComment);
+                    callBack.onSuccess();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
+                return headerMap;
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);

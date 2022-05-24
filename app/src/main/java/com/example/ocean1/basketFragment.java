@@ -2,12 +2,12 @@ package com.example.ocean1;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,10 +23,45 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 
 public class basketFragment extends Fragment {
+
+
+    public void Olumlu_Uyarı() {
+        Dialog dialog = new Dialog(homepageActivity);
+        dialog.setContentView(R.layout.ordercomplete);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView imageViewClose = dialog.findViewById(R.id.imageViewKapat);
+        AppCompatButton button_okey = dialog.findViewById(R.id.button_okey);
+
+
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                homeFragment homeFragment = new homeFragment();
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container, homeFragment).addToBackStack(null).commit();
+            }
+        });
+
+        button_okey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                homeFragment homeFragment = new homeFragment();
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container, homeFragment).addToBackStack(null).commit();
+            }
+        });
+
+        dialog.show();
+    }
+
     homepageActivity homepageActivity;
     Context ctx;
     RecyclerView recyclerView;
@@ -34,7 +69,6 @@ public class basketFragment extends Fragment {
     TextView totalPrice;
     Button buybutton;
     AppCompatEditText receiverMail;
-    private Dialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +82,9 @@ public class basketFragment extends Fragment {
         buybutton = view.findViewById(R.id.buybutton);
         receiverMail = view.findViewById(R.id.receiverMail);
 
-        dialog = new Dialog(ctx);
+        BottomNavigationView bottomNavigationView  =  homepageActivity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.basket);
+
         Basket basket = new Basket();
         basket.getBasketProducts(basket, Api.user.token, Api.user.id, ctx, new VolleyCallBack() {
             @Override
@@ -109,10 +145,18 @@ public class basketFragment extends Fragment {
         buybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Basket.purchaseBasket(Api.user.id, receiverMail.getText().toString(), ctx, new VolleyCallBack() {
+                String s_receivermail = receiverMail.getText().toString();
+                Basket.purchaseBasket(Api.user.id, s_receivermail, ctx, new VolleyCallBack() {
                     @Override
                     public void onSuccess() {
-                        System.out.println("satinalmabasarili");
+                        Api.user.basketProducts.clear();
+                        basket.products.clear();
+                        basket.productCount = 0;
+                        basket.price = 0;
+                        basketAdapter.notifyDataSetChanged();
+                        receiverMail.setText("");
+                        receiverMail.clearFocus();
+                        totalPrice.setText(Double.toString(basket.price) + " $");
                         Olumlu_Uyarı();
                     }
                 });
@@ -143,32 +187,6 @@ public class basketFragment extends Fragment {
 
 
         return view;
-    }
-
-    private void Olumlu_Uyarı() {
-
-        dialog.setContentView(R.layout.ordercomplete);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        ImageView imageViewClose = dialog.findViewById(R.id.imageViewKapat);
-        Button button_okey = dialog.findViewById(R.id.button_okey);
-
-
-        imageViewClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        button_okey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
     }
 }
 

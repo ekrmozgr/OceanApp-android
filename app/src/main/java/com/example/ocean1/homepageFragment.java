@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
@@ -48,8 +49,12 @@ public class homepageFragment extends Fragment{
 
         NavigationView navigationView = view.findViewById(R.id.navmenu);
 
+
+
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
+
+
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((homepageActivity)getActivity()).setSupportActionBar(toolbar);

@@ -42,7 +42,7 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="410dp"
+        android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/photo">
@@ -108,6 +108,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginVertical="10dp"
                 />
+
+            <TextView
+                android:id="@+id/postcomment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view"
+                android:text="Post a Comment"
+                android:textSize="22sp"
+                android:textColor="@color/red"
+                />
+
+            <EditText
+                android:id="@+id/commentedittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@id/postcomment"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/commentbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_button"
+                app:layout_constraintTop_toBottomOf="@id/commentedittext"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="POST" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

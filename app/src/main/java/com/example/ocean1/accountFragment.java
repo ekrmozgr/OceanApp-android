@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.w3c.dom.Text;
 
 
@@ -51,6 +53,9 @@ public class accountFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        BottomNavigationView bottomNavigationView  =  homepageActivity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.account);
 
         _myProfile=view.findViewById(R.id.myProfile);
         _myProfile.setOnClickListener(new View.OnClickListener() {

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,9 @@ public class favoritesFragment extends Fragment {
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
         recyclerView = view.findViewById(R.id.recycler_view);
+
+        BottomNavigationView bottomNavigationView  =  homepageActivity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.favorites);
 
         ArrayList<Product> products = new ArrayList<Product>();
         Product.getFavouritesProducts(products, ctx, new VolleyCallBack() {

@@ -198,11 +198,11 @@ public class Product {
                         currentComment.userName = commentuserobj.getString("name");
                         currentComment.userSurname = commentuserobj.getString("surname");
                         comments.add(currentComment);
+                        callBack.onSuccess();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                callBack.onSuccess();
             }
         }, new Response.ErrorListener() {
             @Override

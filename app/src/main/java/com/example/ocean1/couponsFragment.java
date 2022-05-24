@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,9 @@ public class couponsFragment extends Fragment {
 
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
+
+        BottomNavigationView bottomNavigationView  =  homepageActivity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.coupon);
 
         List<Order> orders = new ArrayList<Order>();
         Order.getOrders(orders, ctx, new VolleyCallBack() {

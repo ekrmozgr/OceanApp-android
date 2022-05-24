@@ -4,13 +4,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +33,10 @@ public class productFragment extends Fragment {
     RecyclerView recyclerView;
     CommentAdapter commentAdapter;
     TextView tprice;
+    TextView tcomment;
+    AppCompatButton commentButton;
+    EditText commentEdt;
+    ArrayList<Comments> comments;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +53,11 @@ public class productFragment extends Fragment {
         whishlistButton = view.findViewById(R.id.whishlistButton);
         recyclerView = view.findViewById(R.id.recycler_view);
         tprice = view.findViewById(R.id.productprice);
+        tcomment = view.findViewById(R.id.commenttextview);
+        commentButton = view.findViewById(R.id.commentbutton);
+        commentEdt = view.findViewById(R.id.commentedittext);
+        comments = new ArrayList<>();
+        commentButton.setEnabled(false);
 
         Bundle bundle = this.getArguments();
         final int productId;
@@ -130,8 +143,43 @@ public class productFragment extends Fragment {
             }
         });
 
+        commentEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        ArrayList<Comments> comments = new ArrayList<>();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String _comment = commentEdt.getText().toString();
+                if(_comment.length() < 3)
+                    commentButton.setEnabled(false);
+                else
+                    commentButton.setEnabled(true);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String comment = commentEdt.getText().toString();
+                Api.postComment(comments, comment, productId, ctx, new VolleyCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        commentAdapter.notifyDataSetChanged();
+                        commentEdt.setText("");
+                        String tcommentString = "Comments (" + comments.size() + ")";
+                        tcomment.setText(tcommentString);
+                    }
+                });
+            }
+        });
+
         Product.getProductComments(productId, comments, ctx, new VolleyCallBack() {
             @Override
             public void onSuccess() {
@@ -140,6 +188,8 @@ public class productFragment extends Fragment {
 
                 commentAdapter = new CommentAdapter(ctx, comments);
                 recyclerView.setAdapter(commentAdapter);
+                String tcommentString = "Comments (" + comments.size() + ")";
+                tcomment.setText(tcommentString);
             }
         });
 

@@ -3,6 +3,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -95,7 +96,7 @@ public class Basket {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
-     public  static void purchaseBasket(int basketId, String receiver, Context context, final VolleyCallBack callBack)
+    public static void purchaseBasket(int basketId, String receiver, Context context, final VolleyCallBack callBack)
     {
         String _url = Api.baskets + "/purchase";
 
@@ -107,11 +108,10 @@ public class Basket {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, _url, jsonBody,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Api.user.basketProducts.clear();
                         callBack.onSuccess();
                     }
                 }, new Response.ErrorListener() {
@@ -124,7 +124,10 @@ public class Basket {
                 }
             }
         }){
-
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headerMap = new HashMap<String, String>();
@@ -132,6 +135,7 @@ public class Basket {
                 return headerMap;
             }
         };
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 }

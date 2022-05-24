@@ -63,7 +63,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="center"
-                android:text="You will be receiving a email with order details and your "
+                android:text="You will be receiving an email with order details"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"

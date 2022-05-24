@@ -73,31 +73,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="To Start, Swipe Right or Search"
+                        android:text="To Start, Swipe Right or Click The Button Above"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="@+id/textView5"
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                    <EditText
-                        android:id="@+id/editTextTextPersonName"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@drawable/search_background"
-                        android:drawableStart="@drawable/search"
-                        android:drawablePadding="10dp"
-                        android:ems="10"
-                        android:hint="Find Your Course"
-                        android:inputType="textPersonName"
-                        android:paddingStart="20dp"
-                        android:textSize="14sp"
-                        android:textStyle="italic"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -109,7 +91,7 @@
                         android:background="@drawable/orange_light_banner"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+                        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
                         <ImageView
                             android:id="@+id/imageView4"

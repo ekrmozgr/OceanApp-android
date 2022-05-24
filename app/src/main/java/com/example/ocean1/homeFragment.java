@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class homeFragment extends Fragment {
 
         NavigationView navigationView = view.findViewById(R.id.navmenu);
 
+
+
         isItemSelected = false;
         homepageActivity =(homepageActivity) getActivity();
         ctx = homepageActivity.getApplicationContext();
@@ -50,13 +53,15 @@ public class homeFragment extends Fragment {
         button = view.findViewById(R.id.imageView3);
         scrollView = view.findViewById(R.id.scrollview);
 
+        BottomNavigationView bottomNavigationView  =  homepageActivity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
