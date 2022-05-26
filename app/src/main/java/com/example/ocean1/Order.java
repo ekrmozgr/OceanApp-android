@@ -23,7 +23,7 @@ public class Order {
     public Order()
     {
         products = new ArrayList<OrderProduct>();
-        coupons = new HashMap<Integer,List<Coupon>>();
+        //coupons = new HashMap<Integer,List<Coupon>>();
     }
 
     int orderId;
@@ -31,8 +31,8 @@ public class Order {
     double price;
     String recipientMail;
     String dateOfOrder;
-    HashMap<Integer,List<Coupon>> coupons;
-    List<OrderProduct> products;
+    //HashMap<Integer,List<Coupon>> coupons;
+    ArrayList<OrderProduct> products;
 
     public static void getOrders(List<Order> orders, Context context, final VolleyCallBack callBack)
     {
@@ -54,7 +54,10 @@ public class Order {
                                 order.recipientMail = obj.getString("recipientMail");
                                 order.dateOfOrder = obj.getString("dateOfOrder");
 
+
+
                                 JSONArray _coupons = obj.getJSONArray("coupons");
+                                /*
                                 for(int j = 0; j < _coupons.length(); j++)
                                 {
                                     JSONObject _couponobj = _coupons.getJSONObject(j);
@@ -67,12 +70,14 @@ public class Order {
                                     coupon.userId = _couponobj.getInt("userId");
 
                                     int key = _couponobj.getInt("productId");
+                                    productId = key;
                                     if(order.coupons.get(key) == null)
                                     {
                                         order.coupons.put(key, new ArrayList<Coupon>());
                                     }
                                     order.coupons.get(key).add(coupon);
                                 }
+*/
 
                                 JSONArray _orderProducts = obj.getJSONArray("orderProducts");
                                 for(int k = 0; k < _orderProducts.length();k++)
@@ -83,6 +88,22 @@ public class Order {
                                     orderProduct.productPrice = _orderProductobj.getDouble("productPrice");
                                     orderProduct.productQuantity = _orderProductobj.getInt("productQuantity");
                                     orderProduct.productId = _orderProductobj.getInt("productId");
+
+                                    for(int j = 0; j < _coupons.length(); j++)
+                                    {
+                                        JSONObject _couponobj = _coupons.getJSONObject(j);
+                                        if(!(orderProduct.productId == _couponobj.getInt("productId")))
+                                            continue;
+
+                                        Coupon coupon = new Coupon();
+                                        coupon.couponCode = _couponobj.getString("couponCode");
+                                        coupon.couponId = _couponobj.getInt("couponId");
+                                        coupon.productId = _couponobj.getInt("productId");
+                                        coupon.orderId = _couponobj.getInt("orderId");
+                                        coupon.userId = _couponobj.getInt("userId");
+
+                                        orderProduct.coupons.add(coupon);
+                                    }
 
                                     JSONObject _productobj = _orderProductobj.getJSONObject("product");
 

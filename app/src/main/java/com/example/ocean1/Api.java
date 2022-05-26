@@ -63,6 +63,37 @@ public class Api {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    public static void getCourseLevels(HashMap<String,Integer> hashMap, Context context, final VolleyCallBack callBack)
+    {
+        String _url = options + "/courselevels";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, _url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for(int i = 0; i < response.length(); i++)
+                        {
+                            try {
+                                JSONObject obj = response.getJSONObject(i);
+                                hashMap.put(obj.getString("optionName").trim().toLowerCase(),obj.getInt("optionId"));
+                            } catch (JSONException e) {
+                                Toast.makeText(context, "Reading Data Error", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        callBack.onSuccess();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try{
+                    Toast.makeText(context, "Error Codee : " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
     public static void getCompany(HashMap<String,String> hashMap,Context context, final VolleyCallBack callBack)
     {
         String _url = infos + "/company";
@@ -172,4 +203,36 @@ public class Api {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    public static void addProduct(JSONObject jsonBody, Context context, VolleyCallBack callBack)
+    {
+        String _url = products;
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, _url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Authorization", "Bearer " + Api.user.token);
+                return headerMap;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+
 }

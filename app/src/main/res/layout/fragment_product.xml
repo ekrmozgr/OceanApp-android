@@ -95,7 +95,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description"
-                android:text="Comments"
+                android:text="Comments (0)"
                 android:textSize="22sp"
                 android:textColor="@color/red"
                 />

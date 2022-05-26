@@ -89,7 +89,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketItem
                 @Override
                 public void onClick(View view) {
                     int _quantity = Integer.parseInt(quantity.getText().toString());
-                    if(_quantity < 10)
+                    if(_quantity < 99)
                         _quantity++;
                     products.get(getBindingAdapterPosition()).productQuantity = _quantity;
 

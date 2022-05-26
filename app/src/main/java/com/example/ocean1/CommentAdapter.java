@@ -22,6 +22,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentI
         this.comments = comments;
     }
 
+    public void refresh(ArrayList<Comments> comments) {
+        this.comments = comments;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public CommentItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

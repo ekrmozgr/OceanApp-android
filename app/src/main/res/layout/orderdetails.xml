@@ -27,7 +27,7 @@
             android:layout_toRightOf="@+id/orderDate"
             android:text=" tarih "
             android:textColor="@color/black"
-            android:textSize="17sp"/>
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/totalPrice"
@@ -65,13 +65,15 @@
             android:layout_toRightOf="@+id/recipientmail"
             android:text=" mail "
             android:textColor="@color/black"
-            android:textSize="17sp"/>
+            android:textSize="17sp" />
 
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

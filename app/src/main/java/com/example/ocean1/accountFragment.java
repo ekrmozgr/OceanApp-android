@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,6 +24,7 @@ public class accountFragment extends Fragment {
 
     homepageActivity homepageActivity;
     myProfileFragment myProfileFragment=new myProfileFragment();
+    addProductFragment addProductFragment = new addProductFragment();
     contactFragment contactFragment = new contactFragment();
     aboutragment aboutragment= new aboutragment();
     Context ctx;
@@ -31,6 +33,8 @@ public class accountFragment extends Fragment {
     TextView tvemail;
     TextView tvname;
     TextView _about;
+    AppCompatButton addProductButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +47,22 @@ public class accountFragment extends Fragment {
         tvemail = view.findViewById(R.id.email);
         tvname.setText(Api.user.name);
         tvemail.setText(Api.user.email);
+        addProductButton = view.findViewById(R.id.addproduct);
+
+        if(!(Api.user.role.equals("INSTRUCTOR") || Api.user.role.equals("ADMIN")))
+        {
+            addProductButton.setEnabled(false);
+            addProductButton.setVisibility(View.GONE);
+        }
+
+        addProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container,addProductFragment).addToBackStack(null).commit();
+            }
+        });
+
         Button logout=view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

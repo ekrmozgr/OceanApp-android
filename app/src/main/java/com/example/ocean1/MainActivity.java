@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         TinyDB tinyDb = new TinyDB(this);
-
         Api.user = tinyDb.getObject("user",User.class);
         if(Api.user != null)
         {

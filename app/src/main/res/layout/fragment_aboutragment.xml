@@ -42,10 +42,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:paddingLeft="5dp"
-        android:text="Aşağıdaki menüden, sistemde kayıtlı ilaçlara,hastalıklara erişebilirsiniz.
-Bunun yanında ilaçların birlikte kullanımınaAşağıdaki menüden, sistemde kayıtlı ilaçlara,hastalıklara erişebilirsiniz.
-Bunun yanında ilaçların birlikte kullanımınAşağıdaki menüden, sistemde kayıtlı ilaçlara,hastalıklara erişebilirsiniz.
-Bunun yanında ilaçların birlikte kullanımın uygun olup olmadığını sorgulayabileceğiniz sayfamızı da kullanabilirsiniz."
+        android:text="Nowadays, when the distance education model is adopted, video lessons play a very important role. It is our main task to easily receive these video lessons as a gift. After selecting a category in our application, you can add it to your video lesson cart. You can easily buy it. You can send your gift code to the selected e-mail address."
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_marginRight="15dp"

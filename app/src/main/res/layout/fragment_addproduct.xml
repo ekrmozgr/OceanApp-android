@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".addProductFragment"
+    android:tag="addproducttag"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header2_background"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Add Product"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/productIcon"
+
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_image_24" />
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productIcon"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_title_24"
+                android:drawablePadding="10dp"
+                android:hint="Title"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_title_24"
+                android:drawablePadding="10dp"
+                android:hint="Description"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_category_24"
+                android:drawablePadding="10dp"
+                android:hint="Category"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/courseLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/category"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_align_horizontal_left_24"
+                android:drawablePadding="10dp"
+                android:hint="Course Level"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/courseHourDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/courseLevel"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_timer_24"
+                android:drawablePadding="10dp"
+                android:hint="Course Hour Duration"
+                android:padding="10dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/courseMinuteDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/courseHourDuration"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_timer_24"
+                android:drawablePadding="10dp"
+                android:hint="Course Minute Duration"
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/CompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/courseMinuteDuration"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_account_balance_24"
+                android:drawablePadding="10dp"
+                android:hint="Company Name"
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/CompanyWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CompanyName"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_web_asset_24"
+                android:drawablePadding="10dp"
+                android:hint="Company Website"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/finalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CompanyWebsite"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_attach_money_24"
+                android:drawablePadding="10dp"
+                android:hint="Price"
+                android:inputType="numberDecimal|numberSigned"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/discountPercent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/finalPrice"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:drawableStart="@drawable/ic_baseline_discount_24"
+                android:drawablePadding="10dp"
+                android:hint="Discount Percent"
+                android:inputType="numberSigned"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/addProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/discountPercent"
+                android:layout_centerHorizontal="true"
+                android:text="Add Product"></Button>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>
+

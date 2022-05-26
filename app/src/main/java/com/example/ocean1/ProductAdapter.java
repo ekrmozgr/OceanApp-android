@@ -56,14 +56,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductI
         Bitmap bitmap = BitmapFactory.decodeByteArray(productImage, 0, productImage.length);
         Bitmap resized = Bitmap.createScaledBitmap(bitmap, 150, 150,true);
 
-        if(productExplanation.length() > 83)
+        String subexplanation = "";
+        if(productExplanation.length() > 75)
         {
-            productExplanation = productExplanation.substring(0,83);
-            productExplanation += "...";
+            subexplanation = productExplanation.substring(0,74);
+            subexplanation += "....";
         }
+        else
+            subexplanation = productExplanation;
 
         holder.productName.setText(productName);
-        holder.productExplanation.setText(productExplanation);
+        holder.productExplanation.setText(subexplanation);
         holder.productImage.setImageBitmap(resized);
 
         boolean isInBasket = false;

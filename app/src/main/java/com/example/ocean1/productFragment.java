@@ -37,6 +37,7 @@ public class productFragment extends Fragment {
     AppCompatButton commentButton;
     EditText commentEdt;
     ArrayList<Comments> comments;
+    int productId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,8 +60,8 @@ public class productFragment extends Fragment {
         comments = new ArrayList<>();
         commentButton.setEnabled(false);
 
+
         Bundle bundle = this.getArguments();
-        final int productId;
         if(bundle != null){
             productName.setText(bundle.getString("productName"));
             description.setText(bundle.getString("description"));
@@ -72,6 +73,35 @@ public class productFragment extends Fragment {
         }
         else
             productId = 0;
+
+
+        Product.getProductComments(productId, comments, ctx, new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
+                commentAdapter = new CommentAdapter(ctx, comments);
+                recyclerView.setAdapter(commentAdapter);
+                String tcommentString = "Comments (" + comments.size() + ")";
+                tcomment.setText(tcommentString);
+            }
+        });
+
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String comment = commentEdt.getText().toString();
+                Api.postComment(comments, comment, productId, ctx, new VolleyCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        commentAdapter.refresh(comments);
+                        commentEdt.setText("");
+                        String tcommentString = "Comments (" + comments.size() + ")";
+                        tcomment.setText(tcommentString);
+                    }
+                });
+            }
+        });
 
         if(Api.user.basketProducts.contains(Integer.valueOf(productId)))
             basketButton.setImageResource(R.drawable.ic_baseline_remove_shopping_cart_24);
@@ -161,35 +191,6 @@ public class productFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
 
-            }
-        });
-
-        commentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String comment = commentEdt.getText().toString();
-                Api.postComment(comments, comment, productId, ctx, new VolleyCallBack() {
-                    @Override
-                    public void onSuccess() {
-                        commentAdapter.notifyDataSetChanged();
-                        commentEdt.setText("");
-                        String tcommentString = "Comments (" + comments.size() + ")";
-                        tcomment.setText(tcommentString);
-                    }
-                });
-            }
-        });
-
-        Product.getProductComments(productId, comments, ctx, new VolleyCallBack() {
-            @Override
-            public void onSuccess() {
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
-
-                commentAdapter = new CommentAdapter(ctx, comments);
-                recyclerView.setAdapter(commentAdapter);
-                String tcommentString = "Comments (" + comments.size() + ")";
-                tcomment.setText(tcommentString);
             }
         });
 
