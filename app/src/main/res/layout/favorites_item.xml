@@ -32,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@id/productImage"
             android:layout_toLeftOf="@id/deleteProduct"
+            android:layout_toRightOf="@id/productImage"
             android:text="Product Name"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/productExplanation"
@@ -46,7 +46,7 @@
             android:layout_toRightOf="@id/productImage"
             android:text="ExplanationExplanationExplanationExplanationExplanationExplanationExplanationExplanationExpffflan..."
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="11sp" />
 
         <ImageButton
             android:id="@+id/basketButton"
@@ -54,8 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/productImage"
             android:layout_alignParentEnd="true"
-            android:scaleType="fitXY"
             android:minHeight="48dp"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_add_shopping_cart_24" />
 
     </RelativeLayout>

@@ -28,7 +28,7 @@
             android:layout_toRightOf="@id/productImage"
             android:text="Product Name"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/productExplanation"
@@ -38,7 +38,7 @@
             android:layout_toRightOf="@id/productImage"
             android:text="ExplanationExplanationExplanationExplanationExplanationExplanationExplanationExplanationExpffflan..."
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="11sp" />
 
         <ImageButton
             android:id="@+id/basketButton"

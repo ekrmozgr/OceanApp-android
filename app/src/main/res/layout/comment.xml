@@ -19,17 +19,17 @@
             android:layout_marginBottom="10dp"
             android:text="Name_Surname"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
             android:text="DateTime"
             android:textColor="@color/black"
-            android:layout_alignParentRight="true"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/comment"
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:text="Comment"
             android:textColor="@color/black"
-            android:textSize="13sp" />
+            android:textSize="11sp" />
 
     </RelativeLayout>
 

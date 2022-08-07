@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(!Build.FINGERPRINT.contains("generic")) {
+            Api.initUrl("http://localhost:7157");
+        }
+        else
+            Api.initUrl("http://10.0.2.2:7157");
 
 
         TinyDB tinyDb = new TinyDB(this);

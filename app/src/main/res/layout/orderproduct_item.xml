@@ -29,7 +29,7 @@
                 android:layout_toRightOf="@id/productImage"
                 android:text="Product Name"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/totalPrice"
@@ -40,7 +40,7 @@
                 android:layout_toRightOf="@id/productImage"
                 android:text="Product Price : "
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/price"
@@ -51,7 +51,7 @@
                 android:layout_toRightOf="@id/totalPrice"
                 android:text="Price"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/Productquantity"
@@ -62,7 +62,7 @@
                 android:layout_below="@+id/totalPrice"
                 android:text="Product Quantity : "
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/quantity"
@@ -73,7 +73,7 @@
                 android:layout_toRightOf="@id/Productquantity"
                 android:text="Quantity"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/productExplanation"
@@ -83,7 +83,7 @@
                 android:layout_toRightOf="@id/productImage"
                 android:text="ExplanationExplanationExplanationExplanationExplanationExplanationExplanationExplanationExpffflan..."
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
         </RelativeLayout>
 

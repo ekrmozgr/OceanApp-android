@@ -19,18 +19,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Api {
-    public static String url = "http://10.0.2.2:7157";
-    public static String baskets = url + "/api/baskets";
-    public static String comments = url + "/api/comments";
-    public static String coupons = url + "/api/coupons";
-    public static String favourites = url + "/api/favourites";
-    public static String infos = url + "/api/infos";
-    public static String login = url + "/api/login";
-    public static String options = url + "/api/options";
-    public static String orders = url + "/api/orders";
-    public static String products = url + "/api/products";
-    public static String users = url + "/api/users";
+
+    public static String url;
+    public static String baskets;
+    public static String comments;
+    public static String favourites;
+    public static String infos;
+    public static String login;
+    public static String options;
+    public static String orders;
+    public static String products;
+    public static String users;
     public static User user;
+
+    public static void initUrl(String _url)
+    {
+        url = _url;
+        initVariables();
+    }
+
+    public static void initVariables()
+    {
+        baskets = url + "/api/baskets";
+        comments = url + "/api/comments";
+        favourites = url + "/api/favourites";
+        infos = url + "/api/infos";
+        login = url + "/api/login";
+        options = url + "/api/options";
+        orders = url + "/api/orders";
+        products = url + "/api/products";
+        users = url + "/api/users";
+    }
 
     public static void getCategories(HashMap<String,Integer> hashMap, Context context, final VolleyCallBack callBack)
     {

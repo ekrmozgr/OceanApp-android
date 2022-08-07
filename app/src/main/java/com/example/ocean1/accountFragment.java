@@ -23,10 +23,10 @@ import org.w3c.dom.Text;
 public class accountFragment extends Fragment {
 
     homepageActivity homepageActivity;
-    myProfileFragment myProfileFragment=new myProfileFragment();
-    addProductFragment addProductFragment = new addProductFragment();
-    contactFragment contactFragment = new contactFragment();
-    aboutragment aboutragment= new aboutragment();
+    myProfileFragment myProfileFragment;
+    addProductFragment addProductFragment;
+    contactFragment contactFragment;
+    aboutragment aboutragment;
     Context ctx;
     TextView _myProfile;
     TextView _contact;
@@ -58,6 +58,7 @@ public class accountFragment extends Fragment {
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addProductFragment = new addProductFragment();
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.container,addProductFragment).addToBackStack(null).commit();
             }
@@ -81,6 +82,7 @@ public class accountFragment extends Fragment {
         _myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myProfileFragment=new myProfileFragment();
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.container,myProfileFragment).addToBackStack(null).commit();
             }
@@ -89,6 +91,7 @@ public class accountFragment extends Fragment {
         _contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                contactFragment = new contactFragment();
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.container, contactFragment).addToBackStack(null).commit();
             }
@@ -97,6 +100,7 @@ public class accountFragment extends Fragment {
         _about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                aboutragment= new aboutragment();
                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.container, aboutragment).addToBackStack(null).commit();
             }
