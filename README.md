@@ -5,19 +5,13 @@
    
    The app doesn't stream any course videos. It just shows the courses of agreed providers and after you buy the course it sends course keys as a mail to the one who you choose. Later they can unlock the course that you gifted on the providers website and watch it
   
-      The app works with OceanAPI(among the repositories) and MSSQL
-   
-      Volley library was used to manage API calls
-      
-      The app and OceanAPI works async all the way down
+      - The app works with OceanAPI(among the repositories) and MSSQL
+      - Volley library was used to manage API calls
+      - The app and OceanAPI works async all the way down
   
   </br>
   
-  ## Example Photos       
-        
-  </br>
-  
-  ### Application Start Screen
+  ### Application Login Screen
   --------------------------------
   
 <p align="center">
@@ -38,6 +32,8 @@
 
 </br>
 
+  ### Main Page
+  --------------------------------
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/72643454/194774618-d6a7cdea-07b4-417c-9aa6-d63744ab7e7d.png" width="300" height="500">
